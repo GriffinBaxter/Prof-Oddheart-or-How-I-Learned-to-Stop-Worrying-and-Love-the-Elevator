@@ -19,6 +19,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
 operation = 2
 size = Vector3(2.2, 2.25, 2.025)
 
+[node name="LeftDoor" type="CSGBox3D" parent="Outer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.1, 0)
+operation = 2
+size = Vector3(0.2, 2.05, 1)
+
+[node name="RightDoor" type="CSGBox3D" parent="Outer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.1, 0)
+operation = 2
+size = Vector3(0.2, 2.05, 1)
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 1.5, 7.5)
 current = true
