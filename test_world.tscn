@@ -12,7 +12,8 @@ sky_material = SubResource("ProceduralSkyMaterial_dxppu")
 [sub_resource type="Environment" id="Environment_1lwx6"]
 background_mode = 2
 sky = SubResource("Sky_gy3sr")
-tonemap_mode = 2
+tonemap_mode = 4
+glow_enabled = true
 
 [node name="TestWorld" type="Node3D"]
 
@@ -20,7 +21,7 @@ tonemap_mode = 2
 environment = SubResource("Environment_1lwx6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-0.866025, -0.321394, -0.383022, 0, -0.766045, 0.642787, -0.5, 0.55667, 0.663414, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Elevator" parent="." instance=ExtResource("1_dxppu")]
