@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1qwrc1spmawo"]
 
-[ext_resource type="PackedScene" uid="uid://boj6d6ujfhsme" path="res://Scenes/Entities/player.tscn" id="1_dxppu"]
+[ext_resource type="PackedScene" uid="uid://boj6d6ujfhsme" path="res://Scenes/Entities/elevator.tscn" id="1_dxppu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -23,7 +23,8 @@ environment = SubResource("Environment_1lwx6")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_dxppu")]
+[node name="Elevator" parent="." instance=ExtResource("1_dxppu")]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+use_collision = true
