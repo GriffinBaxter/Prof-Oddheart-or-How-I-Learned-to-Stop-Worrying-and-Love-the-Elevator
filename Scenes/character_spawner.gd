@@ -6,11 +6,8 @@ extends Node3D
 
 @onready var timer: Timer = $SpawnTimer
 
-
 func _ready() -> void:
-	#timer.wait_time = randf_range(0.5, 1)
 	$CSGMesh3D.hide()
-
 
 func _on_spawn_timer_timeout() -> void:
 	var character = character_scene.instantiate()

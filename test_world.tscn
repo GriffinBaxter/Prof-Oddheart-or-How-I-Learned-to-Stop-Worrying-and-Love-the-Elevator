@@ -30,14 +30,7 @@ shadow_enabled = true
 [node name="Elevator" parent="." instance=ExtResource("1_dxppu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38144, 16.156, 15.6126)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 72.4371)
-use_collision = true
-
 [node name="Building" parent="." instance=ExtResource("2_gy3sr")]
-
-[node name="PersonBase" parent="." instance=ExtResource("3_1lwx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73297, 15.9956, 15.7325)
 
 [node name="Spawners" type="Node3D" parent="."]
 
