@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdswj5j8m7vo5"]
+[gd_scene load_steps=5 format=3 uid="uid://qjq33xvfin8d"]
 
 [ext_resource type="Script" uid="uid://moqxk8y60xhx" path="res://Scenes/Entities/elevator.gd" id="1_25c2b"]
 
