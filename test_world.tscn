@@ -43,6 +43,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73297, 15.9956, 15.7325)
 
 [node name="CharacterSpawner" parent="Spawners" instance=ExtResource("4_dsnr4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700909, 16.636, 10.7809)
-characterScene = ExtResource("3_1lwx6")
-minSpawnTime = 0.5
-maxSpawnTime = 5.0
+character_scene = ExtResource("3_1lwx6")
+min_spawn_time = 0.5
+max_spawn_time = 5.0
