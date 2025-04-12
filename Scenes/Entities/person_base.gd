@@ -1,13 +1,10 @@
 extends CharacterBody3D
 
-@export var speed: float = 5.0
+@export var speed: float = 0.05
 
 var inElevator: bool = false
 
-func _physics_process(delta: float) -> void:
-	if !inElevator:
-		position.x += speed * delta
 
-func setInElevator(value: bool):
-	print("we hit da body brother")
-	inElevator = value
+func _physics_process(_delta: float) -> void:
+	if !inElevator:
+		position.x += speed
