@@ -1,21 +1,18 @@
 extends Node3D
 
+@export var character_scene: PackedScene
+@export var min_spawn_time: float
+@export var max_spawn_time: float
+
 @onready var timer: Timer = $SpawnTimer
 
-@export var characterScene: PackedScene
-@export var minSpawnTime: float
-@export var maxSpawnTime: float
 
 func _ready() -> void:
 	#timer.wait_time = randf_range(0.5, 1)
 	$CSGMesh3D.hide()
-	pass
-
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_spawn_timer_timeout() -> void:
-	var character = characterScene.instantiate()
-	timer.wait_time = randf_range(minSpawnTime, maxSpawnTime)
+	var character = character_scene.instantiate()
+	timer.wait_time = randf_range(min_spawn_time, max_spawn_time)
 	add_child(character)
