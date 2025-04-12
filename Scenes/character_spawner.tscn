@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://fjfsjrc7vrhe"]
+
+[ext_resource type="Script" uid="uid://cu4naps3orn8w" path="res://Scenes/character_spawner.gd" id="1_6ow72"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6ow72"]
+
+[node name="CharacterSpawner" type="Node3D"]
+script = ExtResource("1_6ow72")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+mesh = SubResource("CapsuleMesh_6ow72")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
