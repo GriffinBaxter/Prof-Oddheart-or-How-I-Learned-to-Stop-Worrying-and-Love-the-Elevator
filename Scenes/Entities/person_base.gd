@@ -36,5 +36,6 @@ func _physics_process(delta: float) -> void:
 	if !in_elevator:
 		position.x += direction * speed * delta
 
+
 func die() -> void:
 	queue_free()

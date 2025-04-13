@@ -1,8 +1,5 @@
 extends Node3D
 
-@onready var score_text: RichTextLabel = $UI/ScoreText
-@onready var timer: Timer = $SpawnTimer
-
 @export var min_spawn_time: float
 @export var max_spawn_time: float
 
@@ -10,10 +7,15 @@ var spawners: Array = [0]
 var score: int = 0
 var starting_money: int = 100
 
+@onready var score_text: RichTextLabel = $UI/ScoreText
+@onready var timer: Timer = $SpawnTimer
+
+
 func _ready() -> void:
 	score = starting_money
 	score_text.text = "Moneys: $" + str(score)
-	spawners = get_node("Spawners").get_children()
+	spawners = get_tree().get_nodes_in_group("spawners")
+
 
 func spawn_character_randomly() -> void:
 	if spawners.is_empty():

@@ -5,15 +5,12 @@ extends Node3D
 @export var max_spawn_time: float
 
 @onready var timer: Timer = $SpawnTimer
+@onready var csg_mesh_3d: CSGMesh3D = $CSGMesh3D
 
 
 func _ready() -> void:
-	$CSGMesh3D.hide()
+	csg_mesh_3d.hide()
 
-
-func _on_spawn_timer_timeout() -> void:
-	#spawn()
-	pass
 
 func spawn() -> void:
 	var character = character_scene.instantiate()

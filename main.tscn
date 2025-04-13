@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://w481sfeceye5"]
+[gd_scene load_steps=8 format=3 uid="uid://w481sfeceye5"]
 
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/Entities/elevator.tscn" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://main.gd" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="2_lquwl"]
-[ext_resource type="PackedScene" uid="uid://fjfsjrc7vrhe" path="res://Scenes/character_spawner.tscn" id="3_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bdjjmxl86dfc3" path="res://Scenes/Entities/person_base.tscn" id="4_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,122 +36,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 10)
 
 [node name="Building" parent="." instance=ExtResource("2_lquwl")]
-
-[node name="Spawners" type="Node3D" parent="."]
-
-[node name="CharacterSpawner" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.8464, -3.1981)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner2" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8662, 18.5743, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner11" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429098, 18.5743, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner12" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4291, 18.5743, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner13" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4291, 10.5743, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner14" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4291, 1.57433, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner15" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.429098, 1.57433, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner16" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.321, 1.57433, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner17" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.321, 1.57433, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner18" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.321, 10.918, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner19" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.321001, 10.918, -12.252)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner3" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 18.4788, -2.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner4" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.4788, -2.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner5" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1293, 18.4788, -2.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner6" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1293, 10.8718, -2.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner7" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1293, 1.87184, -2.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner8" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.129308, 1.87184, -2.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner9" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8707, 10.4788, -3.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
-
-[node name="CharacterSpawner10" parent="Spawners" instance=ExtResource("3_7mycd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8707, 1.4788, -3.3748)
-character_scene = ExtResource("4_272bh")
-min_spawn_time = 3.0
-max_spawn_time = 5.0
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
