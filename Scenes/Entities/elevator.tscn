@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://qjq33xvfin8d"]
+[gd_scene load_steps=6 format=3 uid="uid://qjq33xvfin8d"]
 
 [ext_resource type="Script" uid="uid://moqxk8y60xhx" path="res://Scenes/Entities/elevator.gd" id="1_25c2b"]
 
@@ -11,7 +11,11 @@ size = Vector3(2.6, 2.25, 0.185)
 [sub_resource type="BoxShape3D" id="BoxShape3D_kiv01"]
 size = Vector3(0.2, 2.25, 0.599512)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_y28hi"]
+size = Vector3(0.1, 2.25, 1.825)
+
 [node name="Elevator" type="CharacterBody3D"]
+motion_mode = 1
 script = ExtResource("1_25c2b")
 
 [node name="Outer" type="CSGBox3D" parent="."]
@@ -68,3 +72,10 @@ shape = SubResource("BoxShape3D_kiv01")
 [node name="CollisionRight2" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0, -0.8)
 shape = SubResource("BoxShape3D_kiv01")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_y28hi")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

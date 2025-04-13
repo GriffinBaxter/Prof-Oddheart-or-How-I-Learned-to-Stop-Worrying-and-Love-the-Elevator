@@ -7,7 +7,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhpw1"]
 
-[node name="PersonBase" type="CharacterBody3D" groups=["people"]]
+[node name="PersonBase" type="RigidBody3D" groups=["people"]]
+mass = 80.0
 script = ExtResource("1_ywab2")
 speed = 5.0
 

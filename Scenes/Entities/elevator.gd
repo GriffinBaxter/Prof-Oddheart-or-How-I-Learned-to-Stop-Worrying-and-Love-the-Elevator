@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-@export var speed: float = 10.
+@export var speed := 10.
+@export var elevator_strength := 2.
 
 
 func _ready() -> void:
@@ -25,6 +26,16 @@ func _physics_process(_delta: float) -> void:
 	velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
 
 	move_and_slide()
+
+	for slide_collision_count in get_slide_collision_count():
+		var slide_collision := get_slide_collision(slide_collision_count)
+		if slide_collision.get_collider() is RigidBody3D:
+			slide_collision.get_collider().apply_central_impulse(
+				-slide_collision.get_normal() * 30. * elevator_strength
+			)
+			slide_collision.get_collider().apply_impulse(
+				-slide_collision.get_normal() * elevator_strength, slide_collision.get_position()
+			)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
