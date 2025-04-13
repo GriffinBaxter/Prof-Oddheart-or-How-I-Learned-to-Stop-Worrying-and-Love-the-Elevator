@@ -6,7 +6,7 @@ const COLOURS = [Color.RED, Color.GREEN, Color.BLUE]
 @export var fall_speed: float = 1
 
 var in_elevator: bool = false
-var direction: int = 1
+var direction = [-1, 1]
 var colour: Color
 
 @onready var left_ray: RayCast3D = $CollisionRayLeft
@@ -15,7 +15,7 @@ var colour: Color
 
 
 func _ready() -> void:
-	direction = randi_range(-1, 1)
+	direction = direction.pick_random()
 	var material = StandardMaterial3D.new()
 	material.albedo_color = COLOURS[randi_range(0, 2)]
 	body.material = material
@@ -35,3 +35,6 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if !in_elevator:
 		position.x += direction * speed * delta
+
+func die() -> void:
+	queue_free()

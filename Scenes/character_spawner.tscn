@@ -11,7 +11,7 @@ script = ExtResource("1_6ow72")
 wait_time = 0.5
 autostart = true
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." groups=["spawners"]]
 mesh = SubResource("CapsuleMesh_6ow72")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

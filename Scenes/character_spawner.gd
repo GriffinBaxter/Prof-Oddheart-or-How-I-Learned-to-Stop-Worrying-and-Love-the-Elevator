@@ -12,6 +12,10 @@ func _ready() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
+	#spawn()
+	pass
+
+func spawn() -> void:
 	var character = character_scene.instantiate()
 	character.rotation_degrees.y = 90
 	timer.wait_time = randf_range(min_spawn_time, max_spawn_time)
