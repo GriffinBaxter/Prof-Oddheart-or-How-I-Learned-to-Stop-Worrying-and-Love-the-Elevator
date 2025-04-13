@@ -6,7 +6,7 @@ const COLOURS = [Color.RED, Color.GREEN, Color.BLUE]
 
 func _ready() -> void:
 	var material = StandardMaterial3D.new()
-	material.albedo_color = COLOURS[randi_range(0, 2)]
+	material.albedo_color = COLOURS.pick_random()
 	for box in corridor_boxes:
 		box.material = material
 

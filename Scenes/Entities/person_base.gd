@@ -17,7 +17,7 @@ var colour: Color
 func _ready() -> void:
 	direction = direction.pick_random()
 	var material = StandardMaterial3D.new()
-	material.albedo_color = COLOURS[randi_range(0, 2)]
+	material.albedo_color = COLOURS.pick_random()
 	body.material = material
 
 
