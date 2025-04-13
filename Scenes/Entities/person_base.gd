@@ -23,13 +23,15 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if left_ray.is_colliding():
-		var lef_coll = left_ray.get_collider()
-		if lef_coll.is_in_group("outer_walls"):
-			direction = direction * -1
+		var left_col = left_ray.get_collider()
+		if left_col != null:
+			if left_col.is_in_group("outer_walls"):
+				direction = direction * -1
 	if right_ray.is_colliding():
-		var right_coll = right_ray.get_collider()
-		if right_coll.is_in_group("outer_walls"):
-			direction = direction * -1
+		var right_col = right_ray.get_collider()
+		if right_col != null:
+			if right_col.is_in_group("outer_walls"):
+				direction = direction * -1
 
 
 func _physics_process(delta: float) -> void:
