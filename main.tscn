@@ -40,3 +40,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 18.45, -3.25)
 character_scene = ExtResource("4_272bh")
 min_spawn_time = 0.5
 max_spawn_time = 5.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreText" type="RichTextLabel" parent="UI"]
+layout_mode = 0
+offset_right = 142.0
+offset_bottom = 47.0
+text = "Moneys: $$$$"
