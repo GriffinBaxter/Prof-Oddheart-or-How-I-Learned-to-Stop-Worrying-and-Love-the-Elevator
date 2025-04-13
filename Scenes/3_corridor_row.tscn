@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://vcg4h0dits03"]
+
+[ext_resource type="PackedScene" uid="uid://cteryirkquieq" path="res://Scenes/corridor.tscn" id="1_d3jye"]
+
+[node name="3CorridorRow1" type="Node3D"]
+
+[node name="Corridor1" parent="." instance=ExtResource("1_d3jye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+
+[node name="Corridor2" parent="." instance=ExtResource("1_d3jye")]
+
+[node name="Corridor3" parent="." instance=ExtResource("1_d3jye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)

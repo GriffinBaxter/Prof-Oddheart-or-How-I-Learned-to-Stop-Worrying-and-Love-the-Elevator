@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1qwrc1spmawo"]
 
-[ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/Entities/elevator.tscn" id="1_dxppu"]
-[ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="2_gy3sr"]
-[ext_resource type="PackedScene" uid="uid://bdjjmxl86dfc3" path="res://Scenes/Entities/person_base.tscn" id="3_1lwx6"]
-[ext_resource type="PackedScene" uid="uid://fjfsjrc7vrhe" path="res://Scenes/character_spawner.tscn" id="4_dsnr4"]
+[ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/Entities/elevator.tscn" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="2_lquwl"]
+[ext_resource type="PackedScene" uid="uid://fjfsjrc7vrhe" path="res://Scenes/character_spawner.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bdjjmxl86dfc3" path="res://Scenes/Entities/person_base.tscn" id="4_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,7 +18,7 @@ sky = SubResource("Sky_gy3sr")
 tonemap_mode = 4
 glow_enabled = true
 
-[node name="TestWorld" type="Node3D"]
+[node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1lwx6")
@@ -27,15 +27,15 @@ environment = SubResource("Environment_1lwx6")
 transform = Transform3D(-0.866025, -0.321394, -0.383022, 0, -0.766045, 0.642787, -0.5, 0.55667, 0.663414, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Elevator" parent="." instance=ExtResource("1_dxppu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38144, 16.156, 15.6126)
+[node name="Elevator" parent="." instance=ExtResource("1_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 10)
 
-[node name="Building" parent="." instance=ExtResource("2_gy3sr")]
+[node name="Building" parent="." instance=ExtResource("2_lquwl")]
 
 [node name="Spawners" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 18.45, -3.25)
 
-[node name="CharacterSpawner" parent="Spawners" instance=ExtResource("4_dsnr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.700909, 16.636, 10.7809)
-character_scene = ExtResource("3_1lwx6")
+[node name="CharacterSpawner" parent="Spawners" instance=ExtResource("3_7mycd")]
+character_scene = ExtResource("4_272bh")
 min_spawn_time = 0.5
 max_spawn_time = 5.0
