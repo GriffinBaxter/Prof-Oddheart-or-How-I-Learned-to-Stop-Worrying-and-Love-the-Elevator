@@ -25,6 +25,7 @@ environment = SubResource("Environment_1lwx6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.321394, -0.383022, 0, -0.766045, 0.642787, -0.5, 0.55667, 0.663414, 0, 0, 0)
+light_energy = 2.0
 shadow_enabled = true
 
 [node name="Elevator" parent="." instance=ExtResource("1_1bvp3")]
