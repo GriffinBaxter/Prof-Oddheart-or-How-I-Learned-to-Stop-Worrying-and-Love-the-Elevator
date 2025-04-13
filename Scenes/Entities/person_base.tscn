@@ -8,14 +8,13 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhpw1"]
 
 [node name="PersonBase" type="RigidBody3D" groups=["people"]]
-axis_lock_angular_x = true
 axis_lock_angular_y = true
 mass = 80.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -1, 0)
 script = ExtResource("1_ywab2")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+[node name="Body" type="CSGMesh3D" parent="."]
 mesh = SubResource("CapsuleMesh_pecgj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
