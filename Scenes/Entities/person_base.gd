@@ -21,6 +21,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	handle_collision_outer_walls(left_ray)
 	handle_collision_outer_walls(right_ray)
+	if in_elevator:
+		var elevator_position: Vector3 = (
+			get_tree().root.get_child(0).find_child("Elevator").global_position
+		)
+		global_position.x = keep_axis_inside_elevator(global_position.x, elevator_position.x, 1.25)
 
 
 func _physics_process(_delta: float) -> void:
@@ -52,3 +57,11 @@ func handle_collision_outer_walls(ray: RayCast3D) -> void:
 			if col.is_in_group("outer_walls"):
 				direction = -direction
 				rotation_degrees.y = 90 if direction >= 0 else -90
+
+
+func keep_axis_inside_elevator(global: float, elevator: float, value: float) -> float:
+	if global < elevator - value:
+		return elevator - value
+	if global > elevator + value:
+		return elevator + value
+	return global
