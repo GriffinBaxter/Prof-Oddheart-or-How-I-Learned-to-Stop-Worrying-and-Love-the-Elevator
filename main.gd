@@ -16,6 +16,8 @@ func _ready() -> void:
 	score_text.text = "Moneys: $" + str(score)
 	spawners = get_tree().get_nodes_in_group("spawners")
 
+func _process(delta: float) -> void:
+	pass
 
 func spawn_character_randomly() -> void:
 	if spawners.is_empty():
