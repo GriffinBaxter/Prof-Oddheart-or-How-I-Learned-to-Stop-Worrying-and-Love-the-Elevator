@@ -13,7 +13,6 @@ func _ready() -> void:
 
 
 func spawn() -> void:
-	var character = character_scene.instantiate()
-	character.rotation_degrees.y = 90
+	var character := character_scene.instantiate()
 	timer.wait_time = randf_range(min_spawn_time, max_spawn_time)
 	add_child(character)

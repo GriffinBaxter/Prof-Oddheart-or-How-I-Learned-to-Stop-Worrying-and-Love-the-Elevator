@@ -21,7 +21,7 @@ func spawn_character_randomly() -> void:
 	if spawners.is_empty():
 		return
 
-	var random_spawner = spawners.pick_random()
+	var random_spawner: Node3D = spawners.pick_random()
 	random_spawner.spawn()
 	timer.wait_time = randf_range(min_spawn_time, max_spawn_time)
 

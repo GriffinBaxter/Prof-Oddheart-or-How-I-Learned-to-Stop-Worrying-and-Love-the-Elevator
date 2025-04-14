@@ -1,13 +1,10 @@
 extends RigidBody3D
 
-const COLOURS = [Color.RED, Color.GREEN, Color.BLUE]
+@export var speed: float = 0.075
 
-@export var speed: float = 5
-@export var fall_speed: float = 1
-
-var in_elevator: bool = false
-var direction = [-1, 1]
-var colour: Color
+var in_elevator := false
+var direction: int = [-1, 1].pick_random()
+var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
 
 @onready var left_ray: RayCast3D = $CollisionRayLeft
 @onready var right_ray: RayCast3D = $CollisionRayRight
@@ -15,29 +12,43 @@ var colour: Color
 
 
 func _ready() -> void:
-	direction = direction.pick_random()
-	var material = StandardMaterial3D.new()
-	material.albedo_color = COLOURS.pick_random()
+	rotation_degrees.y = 90 * direction
+	var material := StandardMaterial3D.new()
+	material.albedo_color = colour
 	body.material = material
 
 
 func _process(_delta: float) -> void:
-	if left_ray.is_colliding():
-		var left_col = left_ray.get_collider()
-		if left_col != null:
-			if left_col.is_in_group("outer_walls"):
-				direction = direction * -1
-	if right_ray.is_colliding():
-		var right_col = right_ray.get_collider()
-		if right_col != null:
-			if right_col.is_in_group("outer_walls"):
-				direction = direction * -1
+	handle_collision_outer_walls(left_ray)
+	handle_collision_outer_walls(right_ray)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !in_elevator:
-		position.x += direction * speed * delta
+		position.x += direction * speed
+
+
+func enter_elevator() -> void:
+	rotation.y = 0
+	in_elevator = true
+
+
+func drop_off(corridor_colour: Color, new_direction: int) -> void:
+	if corridor_colour == colour:
+		direction = new_direction
+		rotation_degrees.y = 90 if direction >= 0 else -90
+		in_elevator = false
+		get_tree().root.get_child(0).score += 100
 
 
 func die() -> void:
 	queue_free()
+
+
+func handle_collision_outer_walls(ray: RayCast3D) -> void:
+	if ray.is_colliding():
+		var col := ray.get_collider()
+		if col != null:
+			if col.is_in_group("outer_walls"):
+				direction = -direction
+				rotation_degrees.y = 90 if direction >= 0 else -90
