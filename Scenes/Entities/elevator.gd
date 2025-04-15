@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 
 	for slide_collision_count in get_slide_collision_count():
 		var slide_collision := get_slide_collision(slide_collision_count)
-		var collider = slide_collision.get_collider()
+		var collider := slide_collision.get_collider()
 		if slide_collision.get_collider() is RigidBody3D and not collider.is_in_group("elevator"):
 			slide_collision.get_collider().apply_central_impulse(
 				-slide_collision.get_normal() * 30. * elevator_strength
@@ -38,9 +38,12 @@ func _physics_process(_delta: float) -> void:
 				-slide_collision.get_normal() * elevator_strength, slide_collision.get_position()
 			)
 
+
 func get_current_velocity() -> Vector3:
 	return velocity
 
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("people"):
+		print("enter elevator called....")
 		body.enter_elevator()

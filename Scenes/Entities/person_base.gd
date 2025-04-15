@@ -3,6 +3,7 @@ extends RigidBody3D
 @export var speed: float = 0.075
 
 var in_elevator := false
+var has_ever_entered_elevator := false
 var direction: int = [-1, 1].pick_random()
 var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
 
@@ -21,23 +22,26 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	handle_collision_outer_walls(left_ray)
 	handle_collision_outer_walls(right_ray)
-	if in_elevator:
-		var elevator_position: Vector3 = (
-			get_tree().root.get_child(0).find_child("Elevator").global_position
-		)
-		global_position.x = keep_axis_inside_elevator(global_position.x, elevator_position.x, 1.25)
+
 
 func _physics_process(delta: float) -> void:
 	if in_elevator:
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(2, true)
 		var elevator := get_tree().root.get_child(0).find_child("Elevator")
 		if elevator:
-			global_position += elevator.get_current_velocity() * delta
+			global_position = elevator.global_position + elevator.get_current_velocity() * delta
 	else:
+		set_collision_layer_value(1, true)
+		set_collision_layer_value(2, false)
 		position.x += direction * speed
 
+
 func enter_elevator() -> void:
-	rotation.y = 0
-	in_elevator = true
+	if !has_ever_entered_elevator:
+		rotation.y = 0
+		in_elevator = true
+		has_ever_entered_elevator = true
 
 
 func drop_off(corridor_colour: Color, new_direction: int) -> void:
@@ -62,11 +66,3 @@ func handle_collision_outer_walls(ray: RayCast3D) -> void:
 			if col.is_in_group("outer_walls"):
 				direction = -direction
 				rotation_degrees.y = 90 if direction >= 0 else -90
-
-
-func keep_axis_inside_elevator(global: float, elevator: float, value: float) -> float:
-	if global < elevator - value:
-		return elevator - value
-	if global > elevator + value:
-		return elevator + value
-	return global
