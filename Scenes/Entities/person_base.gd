@@ -27,11 +27,13 @@ func _process(_delta: float) -> void:
 		)
 		global_position.x = keep_axis_inside_elevator(global_position.x, elevator_position.x, 1.25)
 
-
-func _physics_process(_delta: float) -> void:
-	if !in_elevator:
+func _physics_process(delta: float) -> void:
+	if in_elevator:
+		var elevator := get_tree().root.get_child(0).find_child("Elevator")
+		if elevator:
+			global_position += elevator.get_current_velocity() * delta
+	else:
 		position.x += direction * speed
-
 
 func enter_elevator() -> void:
 	rotation.y = 0
@@ -44,6 +46,9 @@ func drop_off(corridor_colour: Color, new_direction: int) -> void:
 		rotation_degrees.y = 90 if direction >= 0 else -90
 		in_elevator = false
 		get_tree().root.get_child(0).score += 100
+		#think about what happens after dropoff
+		#maybe they just dissapear when they hit the next wall or something
+		#queue_free()
 
 
 func die() -> void:

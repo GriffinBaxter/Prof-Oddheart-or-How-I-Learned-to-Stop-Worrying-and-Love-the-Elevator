@@ -15,7 +15,7 @@ size = Vector3(0.2, 2.25, 0.0916382)
 [sub_resource type="BoxShape3D" id="BoxShape3D_y28hi"]
 size = Vector3(0.1, 2.25, 1.825)
 
-[node name="Elevator" type="CharacterBody3D"]
+[node name="Elevator" type="CharacterBody3D" groups=["elevator"]]
 motion_mode = 1
 script = ExtResource("1_25c2b")
 
