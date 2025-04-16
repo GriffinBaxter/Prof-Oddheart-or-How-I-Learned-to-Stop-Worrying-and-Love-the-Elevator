@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var speed := 10.
 @export var elevator_strength := 2.
 
+var number_of_people_in_elevator := 0
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -24,6 +26,9 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, speed)
 
 	velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
+
+	if number_of_people_in_elevator >= 3:
+		velocity.y -= number_of_people_in_elevator ** 1.5 - 3
 
 	move_and_slide()
 
