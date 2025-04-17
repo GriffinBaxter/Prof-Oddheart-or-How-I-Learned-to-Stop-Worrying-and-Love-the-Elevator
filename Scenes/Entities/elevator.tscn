@@ -19,6 +19,14 @@ size = Vector3(0.1, 2.25, 1.825)
 motion_mode = 1
 script = ExtResource("1_25c2b")
 
+[node name="SmoothCameraController" type="Node3D" parent="."]
+top_level = true
+
+[node name="Camera3D" type="Camera3D" parent="SmoothCameraController"]
+transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 1.55, 8)
+current = true
+fov = 40.0
+
 [node name="Outer" type="CSGBox3D" parent="."]
 size = Vector3(2.6, 2.65, 2.2)
 material = ExtResource("2_kiv01")
@@ -40,11 +48,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.1, 0)
 operation = 2
 size = Vector3(0.2, 2.05, 1)
 material = ExtResource("2_kiv01")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.978148, 0.207912, 0, -0.207912, 0.978148, 0, 1.5, 7.5)
-current = true
-fov = 40.0
 
 [node name="CollisionBottom" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.225, 0)

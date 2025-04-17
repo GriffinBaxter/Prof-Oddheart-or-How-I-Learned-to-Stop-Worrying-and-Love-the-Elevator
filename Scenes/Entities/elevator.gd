@@ -2,12 +2,16 @@ extends CharacterBody3D
 
 @export var speed := 10.
 @export var elevator_strength := 2.
+@export var smooth_camera_percent := 0.1
 
 var number_of_people_in_elevator := 0
+
+@onready var smooth_camera_controller: Node3D = $SmoothCameraController
 
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	smooth_camera_controller.position = position
 
 
 func _input(event: InputEvent) -> void:
@@ -42,6 +46,10 @@ func _physics_process(_delta: float) -> void:
 			slide_collision.get_collider().apply_impulse(
 				-slide_collision.get_normal() * elevator_strength, slide_collision.get_position()
 			)
+
+	smooth_camera_controller.position = lerp(
+		smooth_camera_controller.position, position, smooth_camera_percent
+	)
 
 
 func get_current_velocity() -> Vector3:
