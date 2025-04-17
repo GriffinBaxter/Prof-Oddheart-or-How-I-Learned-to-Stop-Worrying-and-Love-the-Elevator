@@ -13,7 +13,10 @@ config_version=5
 config/name="Godot-Wild-Jam-80"
 run/main_scene="uid://jiexpvkmj5yq"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0.152941, 0.203922, 0.305882, 1)
+boot_splash/image="uid://2lxkho4xtbw6"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
 
 [debug]
 
