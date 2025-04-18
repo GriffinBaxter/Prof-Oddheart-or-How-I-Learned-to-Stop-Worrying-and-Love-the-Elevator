@@ -3,8 +3,9 @@ extends CharacterBody3D
 @export var speed := 10.
 @export var elevator_strength := 2.
 @export var smooth_camera_percent := 0.1
+@export var enable_conversations := true
 
-var number_of_people_in_elevator := 0
+var people_in_elevator := []
 
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
 
@@ -12,6 +13,8 @@ var number_of_people_in_elevator := 0
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	smooth_camera_controller.position = position
+	if enable_conversations:
+		handle_conversations()
 
 
 func _input(event: InputEvent) -> void:
@@ -31,8 +34,8 @@ func _physics_process(_delta: float) -> void:
 
 	velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
 
-	if number_of_people_in_elevator >= 3:
-		velocity.y -= number_of_people_in_elevator ** 1.5 - 3
+	if people_in_elevator.size() >= 3:
+		velocity.y -= people_in_elevator.size() ** 1.5 - 3
 
 	move_and_slide()
 
@@ -52,10 +55,22 @@ func _physics_process(_delta: float) -> void:
 	)
 
 
-func get_current_velocity() -> Vector3:
-	return velocity
-
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("people"):
 		body.enter_elevator()
+
+
+func handle_conversations() -> void:
+	while true:
+		await get_tree().create_timer(5).timeout
+		if people_in_elevator.size() == 0:
+			pass
+		elif people_in_elevator.size() == 1:
+			people_in_elevator[0].single_person_conversation()
+		elif people_in_elevator.size() == 2:
+			people_in_elevator[0].two_person_conversation(0)
+			people_in_elevator[1].two_person_conversation(1)
+		elif people_in_elevator.size() >= 3:
+			people_in_elevator[0].three_person_conversation(0)
+			people_in_elevator[1].three_person_conversation(1)
+			people_in_elevator[2].three_person_conversation(2)

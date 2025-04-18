@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+const CONVERSATION_DEBUG = preload("res://Sounds/People/conversation_debug.mp3")
+
 @export var speed: float = 0.075
 
 var in_elevator := false
@@ -12,6 +14,7 @@ var elevator: CharacterBody3D
 @onready var right_ray: RayCast3D = $CollisionRayRight
 @onready var body: CSGMesh3D = $Body
 @onready var elevator_ding: AudioStreamPlayer = $ElevatorDing
+@onready var conversation_player: AudioStreamPlayer3D = $ConversationPlayer
 
 
 func _ready() -> void:
@@ -32,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		set_collision_layer_value(1, false)
 		set_collision_layer_value(2, true)
 		if elevator:
-			global_position = elevator.global_position + elevator.get_current_velocity() * delta
+			global_position = elevator.global_position + elevator.velocity * delta
 	else:
 		set_collision_layer_value(1, true)
 		set_collision_layer_value(2, false)
@@ -44,7 +47,7 @@ func enter_elevator() -> void:
 		rotation.y = 0
 		in_elevator = true
 		has_ever_entered_elevator = true
-		elevator.number_of_people_in_elevator += 1
+		elevator.people_in_elevator.append(self)
 		elevator_ding.play()
 
 
@@ -54,7 +57,7 @@ func drop_off(corridor_colour: Color, new_direction: int) -> void:
 		rotation_degrees.y = 90 if direction >= 0 else -90
 		in_elevator = false
 		get_tree().root.get_child(0).score += 100
-		elevator.number_of_people_in_elevator -= 1
+		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 		elevator_ding.play()
 		#think about what happens after dropoff
 		#maybe they just dissapear when they hit the next wall or something
@@ -63,7 +66,7 @@ func drop_off(corridor_colour: Color, new_direction: int) -> void:
 
 func die() -> void:
 	if in_elevator:
-		elevator.number_of_people_in_elevator -= 1
+		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 	queue_free()
 
 
@@ -74,3 +77,26 @@ func handle_collision_outer_walls(ray: RayCast3D) -> void:
 			if col.is_in_group("outer_walls"):
 				direction = -direction
 				rotation_degrees.y = 90 if direction >= 0 else -90
+
+
+func single_person_conversation() -> void:
+	conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+	conversation_player.play()
+
+
+func two_person_conversation(person_index: int) -> void:
+	if person_index == 0:
+		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+	else:
+		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+	conversation_player.play()
+
+
+func three_person_conversation(person_index: int) -> void:
+	if person_index == 0:
+		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+	elif person_index == 1:
+		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+	else:
+		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+	conversation_player.play()
