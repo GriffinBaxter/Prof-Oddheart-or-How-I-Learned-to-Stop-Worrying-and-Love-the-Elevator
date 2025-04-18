@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdjjmxl86dfc3"]
+[gd_scene load_steps=6 format=3 uid="uid://bdjjmxl86dfc3"]
 
 [ext_resource type="Texture2D" uid="uid://cmuat65wweilk" path="res://icon.svg" id="1_uhpw1"]
 [ext_resource type="Script" uid="uid://c2ehdwmlr0263" path="res://Scenes/Entities/person_base.gd" id="1_ywab2"]
+[ext_resource type="AudioStream" uid="uid://de5vobvbimdhf" path="res://Sounds/Elevator/elevator_ding.mp3" id="4_da3v2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pecgj"]
 
@@ -47,3 +48,8 @@ transform = Transform3D(-4.37114e-08, 2.47327e-08, 1, 1, 1.19761e-14, 4.37114e-0
 
 [node name="CollisionRayRight" type="RayCast3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1.14851e-08, -1, 1, -2.47531e-14, -4.37114e-08, 0, -0.262749, -4.37114e-08, -0.0967931, -4.57295e-08, 0.407786)
+
+[node name="ElevatorDing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_da3v2")
+volume_db = -2.5
+max_polyphony = 3
