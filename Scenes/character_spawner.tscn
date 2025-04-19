@@ -7,9 +7,5 @@
 [node name="CharacterSpawner" type="Node3D"]
 script = ExtResource("1_6ow72")
 
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 mesh = SubResource("CapsuleMesh_6ow72")
