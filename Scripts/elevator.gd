@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+const Conversations := preload("res://Scripts/conversations.gd")
+
 @export var speed := 10.
 @export var elevator_strength := 2.
 @export var smooth_camera_percent := 0.1
@@ -62,15 +64,23 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func handle_conversations() -> void:
 	while true:
+		print(type_string(typeof(Conversations.SINGLE_PERSON_CONVERSATIONS)))
 		await get_tree().create_timer(5).timeout
 		if people_in_elevator.size() == 0:
 			pass
 		elif people_in_elevator.size() == 1:
-			people_in_elevator[0].single_person_conversation()
+			var conversation: Array[Resource] = (
+				Conversations.SINGLE_PERSON_CONVERSATIONS.pick_random()
+			)
+			people_in_elevator[0].play_conversation(conversation, 0)
 		elif people_in_elevator.size() == 2:
-			people_in_elevator[0].two_person_conversation(0)
-			people_in_elevator[1].two_person_conversation(1)
+			var conversation: Array[Resource] = Conversations.TWO_PERSON_CONVERSATIONS.pick_random()
+			people_in_elevator[0].play_conversation(conversation, 0)
+			people_in_elevator[1].play_conversation(conversation, 1)
 		elif people_in_elevator.size() >= 3:
-			people_in_elevator[0].three_person_conversation(0)
-			people_in_elevator[1].three_person_conversation(1)
-			people_in_elevator[2].three_person_conversation(2)
+			var conversation: Array[Resource] = (
+				Conversations.THREE_PERSON_CONVERSATIONS.pick_random()
+			)
+			people_in_elevator[0].play_conversation(conversation, 0)
+			people_in_elevator[1].play_conversation(conversation, 1)
+			people_in_elevator[2].play_conversation(conversation, 2)

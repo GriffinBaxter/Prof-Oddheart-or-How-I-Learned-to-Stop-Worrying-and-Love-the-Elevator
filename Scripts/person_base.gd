@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-const CONVERSATION_DEBUG = preload("res://Sounds/People/conversation_debug.mp3")
+const Conversations := preload("res://Scripts/conversations.gd")
 
 @export var speed: float = 0.075
 
@@ -81,24 +81,6 @@ func handle_collision_outer_walls(ray: RayCast3D) -> void:
 				rotation_degrees.y = 90 if direction >= 0 else -90
 
 
-func single_person_conversation() -> void:
-	conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
-	conversation_player.play()
-
-
-func two_person_conversation(person_index: int) -> void:
-	if person_index == 0:
-		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
-	else:
-		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
-	conversation_player.play()
-
-
-func three_person_conversation(person_index: int) -> void:
-	if person_index == 0:
-		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
-	elif person_index == 1:
-		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
-	else:
-		conversation_player.stream = CONVERSATION_DEBUG  # TODO: replace debug
+func play_conversation(conversation: Array[Resource], person_index: int) -> void:
+	conversation_player.stream = conversation[person_index]
 	conversation_player.play()
