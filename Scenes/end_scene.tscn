@@ -8,6 +8,7 @@
 script = ExtResource("1_fgb5u")
 
 [node name="ElevatorOnFire" parent="." instance=ExtResource("1_5pkqa")]
+script = null
 
 [node name="Building" parent="." instance=ExtResource("3_8jdvl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.47566, -24.5061)
