@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cteryirkquieq"]
 
-[ext_resource type="Script" uid="uid://dcg71uls28j15" path="res://Scenes/corridor.gd" id="1_xpux2"]
+[ext_resource type="Script" uid="uid://dcg71uls28j15" path="res://Scripts/corridor.gd" id="1_xpux2"]
 [ext_resource type="PackedScene" uid="uid://fjfsjrc7vrhe" path="res://Scenes/character_spawner.tscn" id="2_7sx80"]
-[ext_resource type="PackedScene" uid="uid://bdjjmxl86dfc3" path="res://Scenes/Entities/person_base.tscn" id="3_ur0cb"]
+[ext_resource type="PackedScene" uid="uid://bdjjmxl86dfc3" path="res://Scenes/person_base.tscn" id="3_ur0cb"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_c1nnf"]
 radius = 1.0

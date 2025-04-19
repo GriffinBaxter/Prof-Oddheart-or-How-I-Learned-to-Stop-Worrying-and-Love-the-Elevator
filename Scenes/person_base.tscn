@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bdjjmxl86dfc3"]
 
-[ext_resource type="Texture2D" uid="uid://cmuat65wweilk" path="res://icon.svg" id="1_uhpw1"]
-[ext_resource type="Script" uid="uid://c2ehdwmlr0263" path="res://Scenes/Entities/person_base.gd" id="1_ywab2"]
-[ext_resource type="AudioStream" uid="uid://de5vobvbimdhf" path="res://Sounds/Elevator/elevator_ding.mp3" id="4_da3v2"]
+[ext_resource type="Script" uid="uid://c2ehdwmlr0263" path="res://Scripts/person_base.gd" id="1_naw8n"]
+[ext_resource type="Texture2D" uid="uid://cmuat65wweilk" path="res://icon.svg" id="2_agn5j"]
+[ext_resource type="AudioStream" uid="uid://de5vobvbimdhf" path="res://Sounds/Elevator/elevator_ding.mp3" id="3_vbak5"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_pecgj"]
 
@@ -13,7 +13,7 @@ axis_lock_angular_y = true
 mass = 80.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, -1, 0)
-script = ExtResource("1_ywab2")
+script = ExtResource("1_naw8n")
 
 [node name="Body" type="CSGMesh3D" parent="."]
 mesh = SubResource("CapsuleMesh_pecgj")
@@ -41,7 +41,7 @@ size = Vector3(0.155396, 1, 0.119629)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.25528, 0, 0, 0, 0.316973, 0, 0, 0, 0.695734, 0, 0.420588, 0.508793)
-texture = ExtResource("1_uhpw1")
+texture = ExtResource("2_agn5j")
 
 [node name="CollisionRayLeft" type="RayCast3D" parent="."]
 transform = Transform3D(-4.37114e-08, 2.47327e-08, 1, 1, 1.19761e-14, 4.37114e-08, 0, 0.453358, -2.78181e-08, 0.281881, 0.0581154, -0.114085)
@@ -50,7 +50,7 @@ transform = Transform3D(-4.37114e-08, 2.47327e-08, 1, 1, 1.19761e-14, 4.37114e-0
 transform = Transform3D(-4.37114e-08, 1.14851e-08, -1, 1, -2.47531e-14, -4.37114e-08, 0, -0.262749, -4.37114e-08, -0.0967931, -4.57295e-08, 0.407786)
 
 [node name="ElevatorDing" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_da3v2")
+stream = ExtResource("3_vbak5")
 volume_db = -2.5
 max_polyphony = 3
 

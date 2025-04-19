@@ -18,6 +18,10 @@ boot_splash/image="uid://2lxkho4xtbw6"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=3000
 
+[autoload]
+
+MusicPlayer="*res://Scenes/elevator_music.tscn"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=1

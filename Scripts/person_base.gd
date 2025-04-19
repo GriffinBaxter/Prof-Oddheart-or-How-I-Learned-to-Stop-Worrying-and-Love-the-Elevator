@@ -22,7 +22,7 @@ func _ready() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = colour
 	body.material = material
-	elevator = get_tree().root.get_child(0).find_child("Elevator")
+	elevator = get_tree().root.get_child(1).find_child("Elevator")
 
 
 func _process(_delta: float) -> void:
@@ -57,7 +57,7 @@ func drop_off(corridor_colour: Color, new_direction: int) -> void:
 		direction = new_direction
 		rotation_degrees.y = 90 if direction >= 0 else -90
 		in_elevator = false
-		get_tree().root.get_child(0).score += 100
+		get_tree().root.get_child(1).score += 100
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
