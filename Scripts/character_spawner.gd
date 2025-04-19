@@ -8,6 +8,7 @@ extends Node3D
 func _ready() -> void:
 	csg_mesh_3d.hide()
 
+
 func spawn() -> void:
 	var character := character_scene.instantiate()
 	add_child(character)
