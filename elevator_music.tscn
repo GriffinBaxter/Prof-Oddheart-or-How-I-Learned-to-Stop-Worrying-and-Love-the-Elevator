@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cok6dja53i8sf"]
-
-[ext_resource type="AudioStream" uid="uid://di8bhd0ft5w66" path="res://Sounds/Music/lounge-jazz-elevator-music.mp3" id="1_nny76"]
-
-[node name="ElevatorMusic" type="AudioStreamPlayer"]
-stream = ExtResource("1_nny76")
-autoplay = true

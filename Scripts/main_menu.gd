@@ -1,5 +1,7 @@
 extends Node3D
 
+const MAIN = preload("res://Scenes/main.tscn")
+
 
 func _on_go_to_play_body_entered(body: Node3D) -> void:
 	if body.is_in_group("elevator"):
@@ -7,4 +9,4 @@ func _on_go_to_play_body_entered(body: Node3D) -> void:
 
 
 func change_scene_to_main() -> void:
-	get_tree().change_scene_to_file("res://main.tscn")
+	get_tree().change_scene_to_packed(MAIN)

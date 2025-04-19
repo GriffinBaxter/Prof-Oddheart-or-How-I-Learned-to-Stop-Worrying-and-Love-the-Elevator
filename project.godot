@@ -20,7 +20,7 @@ boot_splash/minimum_display_time=3000
 
 [autoload]
 
-MusicPlayer="*res://elevator_music.tscn"
+MusicPlayer="*res://Scenes/elevator_music.tscn"
 
 [debug]
 

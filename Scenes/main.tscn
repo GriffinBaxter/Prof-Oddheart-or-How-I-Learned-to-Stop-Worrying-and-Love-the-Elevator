@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://jiexpvkmj5yq"]
 
-[ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/Entities/elevator.tscn" id="1_1bvp3"]
-[ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://main.gd" id="1_lquwl"]
-[ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="2_lquwl"]
-[ext_resource type="AudioStream" uid="uid://cakctl4m1gn4a" path="res://Sounds/People/crowd_noise.mp3" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/elevator.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="3_21xkr"]
+[ext_resource type="AudioStream" uid="uid://cakctl4m1gn4a" path="res://Sounds/People/crowd_noise.mp3" id="4_6bp64"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -22,7 +22,7 @@ glow_enabled = true
 size = Vector3(41.0915, 0.260193, 32.2747)
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_lquwl")
+script = ExtResource("1_jjvhh")
 min_spawn_time = 0.5
 max_spawn_time = 0.5
 
@@ -33,10 +33,10 @@ environment = SubResource("Environment_1lwx6")
 transform = Transform3D(-0.866025, -0.321394, -0.383022, 0, -0.766045, 0.642787, -0.5, 0.55667, 0.663414, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Elevator" parent="." instance=ExtResource("1_1bvp3")]
+[node name="Elevator" parent="." instance=ExtResource("2_kry3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 10)
 
-[node name="Building" parent="." instance=ExtResource("2_lquwl")]
+[node name="Building" parent="." instance=ExtResource("3_21xkr")]
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -60,7 +60,7 @@ shape = SubResource("BoxShape3D_dsnr4")
 autostart = true
 
 [node name="CrowdNoise" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_1bvp3")
+stream = ExtResource("4_6bp64")
 volume_db = -10.0
 autoplay = true
 
