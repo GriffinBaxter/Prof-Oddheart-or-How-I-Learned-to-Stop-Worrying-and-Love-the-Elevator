@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwwnxa4whe1xi"]
+[gd_scene load_steps=10 format=3 uid="uid://cwwnxa4whe1xi"]
 
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/Entities/elevator.tscn" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://cq2ppq7u8s5wm" path="res://main_menu.gd" id="1_fu7sn"]
 [ext_resource type="PackedScene" uid="uid://lw1umd5j3fm0" path="res://main_menu_building.tscn" id="2_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://ce0k16aalf6ma" path="res://arrow.tscn" id="4_jix8l"]
-[ext_resource type="AudioStream" uid="uid://di8bhd0ft5w66" path="res://Sounds/Music/lounge-jazz-elevator-music.mp3" id="5_glbon"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_06t4h"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -66,8 +65,5 @@ transform = Transform3D(-3, 2.62268e-07, 0, -2.62268e-07, -3, 0, 0, 0, 3, 3.9545
 
 [node name="Arrow4" parent="Arrows" instance=ExtResource("4_jix8l")]
 transform = Transform3D(3, -5.24537e-07, 0, 5.24537e-07, 3, 0, 0, 0, 3, 3.95457, -6.55056, -13.7639)
-
-[node name="MainSoundPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_glbon")
 
 [connection signal="body_entered" from="GoToPlay" to="." method="_on_go_to_play_body_entered"]
