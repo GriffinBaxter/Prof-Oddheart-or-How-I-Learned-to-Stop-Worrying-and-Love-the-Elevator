@@ -64,22 +64,18 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 
 func handle_conversations() -> void:
 	while true:
-		await get_tree().create_timer(5).timeout
+		await get_tree().create_timer(15).timeout
 		if people_in_elevator.size() == 0:
 			pass
 		elif people_in_elevator.size() == 1:
-			var conversation: Array[Resource] = (
-				Conversations.SINGLE_PERSON_CONVERSATIONS.pick_random()
-			)
-			people_in_elevator[0].play_conversation(conversation, 0)
+			var conversation: Array = Conversations.SINGLE_PERSON_CONVERSATIONS.pick_random()
+			people_in_elevator[-1].play_conversation(conversation, 0)
 		elif people_in_elevator.size() == 2:
-			var conversation: Array[Resource] = Conversations.TWO_PERSON_CONVERSATIONS.pick_random()
-			people_in_elevator[0].play_conversation(conversation, 0)
-			people_in_elevator[1].play_conversation(conversation, 1)
+			var conversation: Array = Conversations.TWO_PERSON_CONVERSATIONS.pick_random()
+			people_in_elevator[-2].play_conversation(conversation, 0)
+			people_in_elevator[-1].play_conversation(conversation, 1)
 		elif people_in_elevator.size() >= 3:
-			var conversation: Array[Resource] = (
-				Conversations.THREE_PERSON_CONVERSATIONS.pick_random()
-			)
-			people_in_elevator[0].play_conversation(conversation, 0)
-			people_in_elevator[1].play_conversation(conversation, 1)
-			people_in_elevator[2].play_conversation(conversation, 2)
+			var conversation: Array = Conversations.THREE_PERSON_CONVERSATIONS.pick_random()
+			people_in_elevator[-3].play_conversation(conversation, 0)
+			people_in_elevator[-2].play_conversation(conversation, 1)
+			people_in_elevator[-1].play_conversation(conversation, 2)

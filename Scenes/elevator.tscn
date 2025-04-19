@@ -18,7 +18,6 @@ size = Vector3(0.1, 2.25, 1.825)
 [node name="Elevator" type="CharacterBody3D" groups=["elevator"]]
 motion_mode = 1
 script = ExtResource("1_25c2b")
-enable_conversations = false
 
 [node name="SmoothCameraController" type="Node3D" parent="."]
 top_level = true

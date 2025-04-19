@@ -6,6 +6,7 @@ const Conversations := preload("res://Scripts/conversations.gd")
 
 var in_elevator := false
 var has_ever_entered_elevator := false
+var has_conversed := false
 var direction: int = [-1, 1].pick_random()
 var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
 var elevator: CharacterBody3D
@@ -22,7 +23,7 @@ func _ready() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = colour
 	body.material = material
-	elevator = get_tree().root.get_child(1).find_child("Elevator")
+	elevator = get_tree().root.get_child(2).find_child("Elevator")
 
 
 func _process(_delta: float) -> void:
@@ -57,7 +58,7 @@ func drop_off(corridor_colour: Color, new_direction: int) -> void:
 		direction = new_direction
 		rotation_degrees.y = 90 if direction >= 0 else -90
 		in_elevator = false
-		get_tree().root.get_child(1).score += 100
+		get_tree().root.get_child(2).score += 100
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
@@ -81,6 +82,7 @@ func handle_collision_outer_walls(ray: RayCast3D) -> void:
 				rotation_degrees.y = 90 if direction >= 0 else -90
 
 
-func play_conversation(conversation: Array[Resource], person_index: int) -> void:
+func play_conversation(conversation: Array, person_index: int) -> void:
 	conversation_player.stream = conversation[person_index]
 	conversation_player.play()
+	has_conversed = true
