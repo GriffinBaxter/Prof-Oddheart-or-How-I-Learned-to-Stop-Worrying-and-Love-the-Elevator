@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bldx0ctrq74e7"]
+
+[ext_resource type="PackedScene" uid="uid://dyyaomg55yhvn" path="res://Scenes/elevator_on_fire.tscn" id="1_5pkqa"]
+[ext_resource type="Script" uid="uid://c4woegx5sylng" path="res://Scripts/end_scene.gd" id="1_fgb5u"]
+[ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="3_8jdvl"]
+
+[node name="EndScene" type="Node3D"]
+script = ExtResource("1_fgb5u")
+
+[node name="ElevatorOnFire" parent="." instance=ExtResource("1_5pkqa")]
+
+[node name="Building" parent="." instance=ExtResource("3_8jdvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.47566, -24.5061)
