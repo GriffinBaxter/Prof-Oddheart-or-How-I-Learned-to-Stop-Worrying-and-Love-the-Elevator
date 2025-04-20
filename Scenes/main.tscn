@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://jiexpvkmj5yq"]
+[gd_scene load_steps=16 format=3 uid="uid://jiexpvkmj5yq"]
 
 [ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://Scripts/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/elevator.tscn" id="2_kry3j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dmby124bmub76" path="res://Images/wasd_filled_in.png" id="5_344ge"]
 [ext_resource type="AudioStream" uid="uid://cj7av3cdsr20y" path="res://Sounds/Elevator/sad-violin-piano.mp3" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://dphi7q2qnso1t" path="res://Images/button_filled_in.png" id="6_ynf5e"]
+[ext_resource type="AudioStream" uid="uid://5htt5qvu5gpr" path="res://Sounds/triumphant-valor.mp3" id="9_hptm8"]
 [ext_resource type="Texture2D" uid="uid://dcxc1dav0oc7x" path="res://Images/thumbs_up.png" id="9_ynf5e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
@@ -117,6 +118,10 @@ bus = &"Other"
 
 [node name="GameLost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_21xkr")
+
+[node name="GameWon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_hptm8")
+volume_db = -10.0
 
 [node name="GameWonMoon" type="CSGSphere3D" parent="."]
 transform = Transform3D(3.01347, 0, -1.40521, 0, 3.325, 0, 1.40521, 0, 3.01347, 154.14, 369.82, -389.39)

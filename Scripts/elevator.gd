@@ -14,10 +14,12 @@ var game_won := false
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
 @onready var on_fire_stuff: Node3D = $OnFireStuff
 @onready var camera_3d: Camera3D = $SmoothCameraController/Camera3D
+@onready var rocket_stuff: Node3D = $RocketSuff
 
 
 func _ready() -> void:
 	on_fire_stuff.hide()
+	rocket_stuff.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	smooth_camera_controller.position = position
 	if enable_conversations:
@@ -70,6 +72,7 @@ func _physics_process(_delta: float) -> void:
 func _process(_delta: float) -> void:
 	if game_won:
 		smooth_camera_controller.position = lerp(smooth_camera_controller.position, position, 0.75)
+		rocket_stuff.show()
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

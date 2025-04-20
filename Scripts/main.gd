@@ -19,6 +19,7 @@ var elevator: CharacterBody3D
 @onready var arrow_down: TextureRect = $UI/ArrowDown
 @onready var crowd_noise: AudioStreamPlayer = $CrowdNoise
 @onready var game_lost: AudioStreamPlayer = $GameLost
+@onready var game_won: AudioStreamPlayer = $GameWon
 @onready var q_button_popup: Control = $UI/QButtonPopup
 @onready var q: TextureRect = $UI/QButtonPopup/Q
 
@@ -61,7 +62,7 @@ func _process(_delta: float) -> void:
 			game_end = true
 			ElevatorMusic.stop()
 			crowd_noise.stop()
-			#game_won.play()  # TODO: add winning music
+			game_won.play()
 			elevator.won_game()
 		elif score <= min_score:
 			game_end = true

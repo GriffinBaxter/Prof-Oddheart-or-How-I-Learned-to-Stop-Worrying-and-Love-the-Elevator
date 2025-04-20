@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qjq33xvfin8d"]
+[gd_scene load_steps=13 format=3 uid="uid://qjq33xvfin8d"]
 
 [ext_resource type="Script" uid="uid://moqxk8y60xhx" path="res://Scripts/elevator.gd" id="1_25c2b"]
 [ext_resource type="Material" uid="uid://cwo6egjcelvi0" path="res://Materials/black.tres" id="2_kiv01"]
@@ -46,6 +46,10 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_1gjip"]
 material = SubResource("StandardMaterial3D_rajhg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7i85y"]
+angle_min = 1.07288e-05
+angle_max = 455.2
 
 [node name="Elevator" type="CharacterBody3D" groups=["elevator"]]
 motion_mode = 1
@@ -136,6 +140,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.827073, 0)
 amount = 15
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_jd6vs")
+draw_pass_1 = SubResource("QuadMesh_1gjip")
+
+[node name="RocketSuff" type="Node3D" parent="."]
+
+[node name="RocketTrailEffect" type="GPUParticles3D" parent="RocketSuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135621, -1.66406, 0.0327559)
+amount = 15
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7i85y")
 draw_pass_1 = SubResource("QuadMesh_1gjip")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
