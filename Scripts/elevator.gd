@@ -23,7 +23,6 @@ var game_won := false
 func _ready() -> void:
 	on_fire_stuff.hide()
 	rocket_stuff.hide()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	smooth_camera_controller.position = position
 	if enable_conversations:
 		handle_conversations()

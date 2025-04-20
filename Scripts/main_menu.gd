@@ -18,6 +18,7 @@ func change_scene_to_main() -> void:
 
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elevator = get_tree().get_first_node_in_group("elevator")
 	blink_tooltips()
 

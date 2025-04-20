@@ -26,6 +26,7 @@ var elevator: CharacterBody3D
 
 
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elevator = get_tree().get_first_node_in_group("elevator")
 	spawners = get_tree().get_nodes_in_group("spawners")
 	q_button_popup.hide()

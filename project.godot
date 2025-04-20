@@ -21,6 +21,7 @@ boot_splash/minimum_display_time=3000
 [audio]
 
 buses/default_bus_layout="uid://bt1x6a1o2biw6"
+general/default_playback_type.web=0
 
 [autoload]
 
