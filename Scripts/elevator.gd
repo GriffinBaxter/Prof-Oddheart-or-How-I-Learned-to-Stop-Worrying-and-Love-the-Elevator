@@ -21,8 +21,10 @@ var game_won := false
 
 
 func _ready() -> void:
+	await get_tree().create_timer(.1).timeout
 	on_fire_stuff.hide()
 	rocket_stuff.hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	smooth_camera_controller.position = position
 	if enable_conversations:
 		handle_conversations()
@@ -58,10 +60,10 @@ func _physics_process(_delta: float) -> void:
 		var collider := slide_collision.get_collider()
 		if slide_collision.get_collider() is RigidBody3D and not collider.is_in_group("elevator"):
 			slide_collision.get_collider().apply_central_impulse(
-				-slide_collision.get_normal() * 30. * elevator_strength
+				- slide_collision.get_normal() * 30. * elevator_strength
 			)
 			slide_collision.get_collider().apply_impulse(
-				-slide_collision.get_normal() * elevator_strength, slide_collision.get_position()
+				- slide_collision.get_normal() * elevator_strength, slide_collision.get_position()
 			)
 
 	if !game_won:
@@ -117,16 +119,16 @@ func won_game() -> void:
 	var elevator_tween := create_tween()
 	(
 		elevator_tween
-		. tween_property(self, "global_position", Vector3(0, 400, 0), 4)
-		. set_trans(Tween.TRANS_SINE)
-		. set_ease(Tween.EASE_IN_OUT)
+		.tween_property(self, "global_position", Vector3(0, 400, 0), 4)
+		.set_trans(Tween.TRANS_SINE)
+		.set_ease(Tween.EASE_IN_OUT)
 	)
 	var camera_tween := create_tween()
 	(
 		camera_tween
-		. tween_property(camera_3d, "position", Vector3(0, 12, 30), 4)
-		. set_trans(Tween.TRANS_SINE)
-		. set_ease(Tween.EASE_IN_OUT)
+		.tween_property(camera_3d, "position", Vector3(0, 12, 30), 4)
+		.set_trans(Tween.TRANS_SINE)
+		.set_ease(Tween.EASE_IN_OUT)
 	)
 	await get_tree().create_timer(4).timeout
 	rocket_stuff.hide()
