@@ -4,6 +4,8 @@ const NEUTRAL_ARROW_COLOUR := Color.DIM_GRAY - Color(0, 0, 0, 0.5)
 const GREEN_ARROW_COLOUR := Color("86ff4b")
 const RED_ARROW_COLOUR := Color("ff413b")
 
+const SKY_MATERIAL = preload("res://Materials/sky_material.tres")
+
 @export var max_score := 200.
 @export var min_score := -200.
 @export var max_spawn_time: float
@@ -23,6 +25,7 @@ var elevator: CharacterBody3D
 @onready var q_button_popup: Control = $UI/QButtonPopup
 @onready var q: TextureRect = $UI/QButtonPopup/Q
 @onready var thumbs_up: Sprite3D = $GameWonMoon/ThumbsUp
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
 
 
 func _input(event: InputEvent) -> void:
@@ -65,31 +68,9 @@ func _process(_delta: float) -> void:
 			)
 
 		if score >= max_score:
-			game_end = true
-			ElevatorMusic.stop()
-			crowd_noise.stop()
-			game_won.play()
-			elevator.won_game()
-			await get_tree().create_timer(3).timeout
-			var tween := create_tween()
-			(
-				tween
-				. tween_property(thumbs_up, "position:x", -31.585, 4)
-				. set_trans(Tween.TRANS_SINE)
-				. set_ease(Tween.EASE_OUT)
-			)
-			await get_tree().create_timer(4).timeout
-			tween.stop()
-			await get_tree().create_timer(6).timeout
-			get_tree().reload_current_scene()
+			won_game()
 		elif score <= min_score:
-			game_end = true
-			ElevatorMusic.stop()
-			crowd_noise.stop()
-			game_lost.play()
-			elevator.lost_game()
-			await get_tree().create_timer(10).timeout
-			get_tree().reload_current_scene()
+			lost_game()
 
 
 func spawn_character_randomly() -> void:
@@ -117,3 +98,58 @@ func _on_kill_zone_body_entered(body: Node3D) -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_character_randomly()
+
+
+func won_game() -> void:
+	game_end = true
+	ElevatorMusic.stop()
+	crowd_noise.stop()
+	game_won.play()
+	elevator.won_game()
+	var modified_sky_material := SKY_MATERIAL
+	world_environment.environment.sky.set_material(modified_sky_material)
+	var sky_tween := create_tween()
+	(
+		sky_tween
+		. tween_property(modified_sky_material, "sky_top_color", Color(0.15, 0.15, 0.15, 1), 4)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_OUT)
+	)
+	(
+		sky_tween
+		. parallel()
+		. tween_property(modified_sky_material, "sky_horizon_color", Color(0.15, 0.15, 0.15, 1), 4)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_OUT)
+	)
+	(
+		sky_tween
+		. parallel()
+		. tween_property(
+			modified_sky_material, "ground_horizon_color", Color(0.15, 0.15, 0.15, 1), 4
+		)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_OUT)
+	)
+	await get_tree().create_timer(3).timeout
+	var thumbs_up_tween := create_tween()
+	(
+		thumbs_up_tween
+		. tween_property(thumbs_up, "position:x", -31.585, 4)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_OUT)
+	)
+	await get_tree().create_timer(4).timeout
+	thumbs_up_tween.stop()
+	await get_tree().create_timer(6).timeout
+	get_tree().reload_current_scene()
+
+
+func lost_game() -> void:
+	game_end = true
+	ElevatorMusic.stop()
+	crowd_noise.stop()
+	game_lost.play()
+	elevator.lost_game()
+	await get_tree().create_timer(10).timeout
+	get_tree().reload_current_scene()

@@ -1,6 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://jiexpvkmj5yq"]
 
 [ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://Scripts/main.gd" id="1_jjvhh"]
+[ext_resource type="Material" uid="uid://bnong5miga5sc" path="res://Materials/sky_material.tres" id="2_d1ilt"]
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/elevator.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="3_21xkr"]
 [ext_resource type="AudioStream" uid="uid://cakctl4m1gn4a" path="res://Sounds/People/crowd_noise.mp3" id="4_6bp64"]
@@ -11,14 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://5htt5qvu5gpr" path="res://Sounds/triumphant-valor.mp3" id="9_hptm8"]
 [ext_resource type="Texture2D" uid="uid://dcxc1dav0oc7x" path="res://Images/thumbs_up.png" id="9_ynf5e"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
-sky_top_color = Color(0.180392, 0.333333, 0.384314, 1)
-sky_horizon_color = Color(1, 1, 1, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(1, 1, 1, 1)
-
 [sub_resource type="Sky" id="Sky_gy3sr"]
-sky_material = SubResource("ProceduralSkyMaterial_dxppu")
+sky_material = ExtResource("2_d1ilt")
 
 [sub_resource type="Environment" id="Environment_1lwx6"]
 background_mode = 2
