@@ -4,6 +4,6 @@
 
 [node name="ElevatorMusic" type="AudioStreamPlayer"]
 stream = ExtResource("1_tpoau")
-volume_db = -19.676
+volume_db = -49.658
 autoplay = true
-bus = &"Other"
+parameters/looping = true
