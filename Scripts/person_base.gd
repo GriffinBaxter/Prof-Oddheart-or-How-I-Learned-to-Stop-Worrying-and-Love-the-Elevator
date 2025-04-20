@@ -60,7 +60,7 @@ func enter_elevator() -> void:
 func drop_off(corridor_colour: Color, new_direction: int) -> void:
 	if corridor_colour == colour:
 		direction = new_direction
-		rotation_degrees.y = 90 if direction >= lerp(0, 90, 1) else lerp(0,-90, 1)
+		rotation_degrees.y = 90 if direction >= lerp(0, 90, 0.75) else lerp(0,-90, 0.75)
 		in_elevator = false
 		get_tree().root.get_child(2).score += 100
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
