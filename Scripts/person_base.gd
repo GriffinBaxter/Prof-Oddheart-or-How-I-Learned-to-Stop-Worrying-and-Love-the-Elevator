@@ -1,6 +1,10 @@
 extends RigidBody3D
 
 const Conversations := preload("res://Scripts/conversations.gd")
+const FACE_1 = preload("res://Images/face_1.png")
+const FACE_2 = preload("res://Images/face_2.png")
+const FACE_3 = preload("res://Images/face_3.png")
+const FACE_4 = preload("res://Images/face_4.png")
 
 @export var speed: float = 0.075
 
@@ -8,6 +12,7 @@ var in_elevator := false
 var has_ever_entered_elevator := false
 var direction: int = [-1, 1].pick_random()
 var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
+var face_texture: Resource = [FACE_1, FACE_2, FACE_3, FACE_4].pick_random()
 var elevator: CharacterBody3D
 
 @onready var left_ray: RayCast3D = $CollisionRayLeft
@@ -15,6 +20,7 @@ var elevator: CharacterBody3D
 @onready var body: CSGMesh3D = $Body
 @onready var elevator_ding: AudioStreamPlayer = $ElevatorDing
 @onready var conversation_player: AudioStreamPlayer3D = $ConversationPlayer
+@onready var face: Sprite3D = $Face
 
 
 func _ready() -> void:
@@ -22,6 +28,7 @@ func _ready() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = colour
 	body.material = material
+	face.texture = face_texture
 	elevator = get_tree().get_first_node_in_group("elevator")
 
 
