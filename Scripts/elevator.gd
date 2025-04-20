@@ -9,6 +9,7 @@ const Conversations := preload("res://Scripts/conversations.gd")
 
 var people_in_elevator := []
 var game_lost := false
+var game_won := false
 
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
 @onready var on_fire_stuff: Node3D = $OnFireStuff
@@ -28,7 +29,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if !game_lost:
+	if !game_lost and !game_won:
 		var input := Input.get_vector("left", "right", "down", "up")
 		var direction := transform.basis * Vector3(input.x, input.y, 0).normalized()
 		if direction:
@@ -59,9 +60,15 @@ func _physics_process(_delta: float) -> void:
 				-slide_collision.get_normal() * elevator_strength, slide_collision.get_position()
 			)
 
-	smooth_camera_controller.position = lerp(
-		smooth_camera_controller.position, position, smooth_camera_percent
-	)
+	if !game_won:
+		smooth_camera_controller.position = lerp(
+			smooth_camera_controller.position, position, smooth_camera_percent
+		)
+
+
+func _process(_delta: float) -> void:
+	if game_won:
+		smooth_camera_controller.position = lerp(smooth_camera_controller.position, position, 0.75)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -88,6 +95,21 @@ func handle_conversations() -> void:
 			people_in_elevator[-1].play_conversation(conversation, 2)
 
 
-func set_lost_state() -> void:
+func lost_game() -> void:
 	game_lost = true
 	on_fire_stuff.show()
+
+
+func won_game() -> void:
+	game_won = true
+	#rocket_trail.show()  # TODO: add rocket trail
+	set_collision_mask_value(1, false)
+	var tween := create_tween()
+	(
+		tween
+		. tween_property(self, "global_position", Vector3(0, 400, 0), 4)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
+	)
+	await get_tree().create_timer(4).timeout
+	tween.stop()

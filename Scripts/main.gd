@@ -1,14 +1,13 @@
 extends Node3D
 
-const MAX_SCORE := 200.
-const MIN_SCORE := -200.
-
 const NEUTRAL_ARROW_COLOUR := Color.DIM_GRAY - Color(0, 0, 0, 0.5)
 const GREEN_ARROW_COLOUR := Color("86ff4b")
 const RED_ARROW_COLOUR := Color("ff413b")
 
-@export var min_spawn_time: float
+@export var max_score := 200.
+@export var min_score := -200.
 @export var max_spawn_time: float
+@export var min_spawn_time: float
 
 var spawners: Array = [0]
 var score: int = 0
@@ -41,25 +40,35 @@ func _process(_delta: float) -> void:
 		if score == 0:
 			arrow_up.modulate = NEUTRAL_ARROW_COLOUR
 			arrow_down.modulate = NEUTRAL_ARROW_COLOUR
+		elif score >= max_score:
+			arrow_up.modulate = GREEN_ARROW_COLOUR
 		elif score > 0:
 			arrow_up.modulate = (
-				GREEN_ARROW_COLOUR * (score / MAX_SCORE)
-				+ NEUTRAL_ARROW_COLOUR * ((MAX_SCORE - score) / MAX_SCORE)
+				GREEN_ARROW_COLOUR * (score / max_score)
+				+ NEUTRAL_ARROW_COLOUR * ((max_score - score) / max_score)
 			)
 			arrow_down.modulate = NEUTRAL_ARROW_COLOUR
+		elif score <= min_score:
+			arrow_up.modulate = RED_ARROW_COLOUR
 		elif score < 0:
 			arrow_up.modulate = NEUTRAL_ARROW_COLOUR
 			arrow_down.modulate = (
-				RED_ARROW_COLOUR * (score / MIN_SCORE)
-				+ NEUTRAL_ARROW_COLOUR * ((-MIN_SCORE + score) / -MIN_SCORE)
+				RED_ARROW_COLOUR * (score / min_score)
+				+ NEUTRAL_ARROW_COLOUR * ((-min_score + score) / -min_score)
 			)
 
-		if score <= MIN_SCORE:
+		if score >= max_score:
+			game_end = true
+			ElevatorMusic.stop()
+			crowd_noise.stop()
+			#game_won.play()  # TODO: add winning music
+			elevator.won_game()
+		elif score <= min_score:
 			game_end = true
 			ElevatorMusic.stop()
 			crowd_noise.stop()
 			game_lost.play()
-			elevator.set_lost_state()
+			elevator.lost_game()
 
 
 func spawn_character_randomly() -> void:

@@ -27,8 +27,8 @@ size = Vector3(41.0915, 0.260193, 32.2747)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jjvhh")
-min_spawn_time = 0.5
 max_spawn_time = 0.5
+min_spawn_time = 0.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1lwx6")
@@ -111,6 +111,11 @@ bus = &"Other"
 
 [node name="GameLost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_21xkr")
+
+[node name="GameWonMoon" type="CSGSphere3D" parent="."]
+transform = Transform3D(3.325, 0, 0, 0, 3.325, 0, 0, 0, 3.325, 5.055, 400.775, -4.735)
+radial_segments = 48
+rings = 24
 
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
