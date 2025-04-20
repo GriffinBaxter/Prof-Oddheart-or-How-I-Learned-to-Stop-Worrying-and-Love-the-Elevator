@@ -45,10 +45,14 @@ func _physics_process(delta: float) -> void:
 
 func enter_elevator() -> void:
 	if !has_ever_entered_elevator:
-		rotation.y = 0
 		in_elevator = true
 		has_ever_entered_elevator = true
 		elevator.people_in_elevator.append(self)
+
+		var target_y = elevator.rotation.y
+		var tween := create_tween()
+		tween.tween_property(self, "rotation:y", target_y, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
 
@@ -56,15 +60,12 @@ func enter_elevator() -> void:
 func drop_off(corridor_colour: Color, new_direction: int) -> void:
 	if corridor_colour == colour:
 		direction = new_direction
-		rotation_degrees.y = 90 if direction >= 0 else -90
+		rotation_degrees.y = 90 if direction >= lerp(0, 90, 1) else lerp(0,-90, 1)
 		in_elevator = false
 		get_tree().root.get_child(2).score += 100
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
-		#think about what happens after dropoff
-		#maybe they just dissapear when they hit the next wall or something
-		#queue_free()
 
 
 func die() -> void:
