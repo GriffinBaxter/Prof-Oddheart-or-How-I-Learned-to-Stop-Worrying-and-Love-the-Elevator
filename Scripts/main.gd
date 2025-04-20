@@ -45,7 +45,7 @@ func _process(_delta: float) -> void:
 
 		if score <= MIN_SCORE:
 			game_end = true
-			var elevator = get_tree().get_first_node_in_group("elevator")
+			var elevator := get_tree().get_first_node_in_group("elevator")
 			ElevatorMusic.stop()
 			crowd_noise.stop()
 			game_lost.play()

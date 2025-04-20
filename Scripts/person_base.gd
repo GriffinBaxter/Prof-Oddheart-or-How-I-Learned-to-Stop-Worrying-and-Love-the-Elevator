@@ -22,7 +22,7 @@ func _ready() -> void:
 	var material := StandardMaterial3D.new()
 	material.albedo_color = colour
 	body.material = material
-	elevator = get_tree().root.get_child(2).find_child("Elevator")
+	elevator = get_tree().get_first_node_in_group("elevator")
 
 
 func _process(_delta: float) -> void:

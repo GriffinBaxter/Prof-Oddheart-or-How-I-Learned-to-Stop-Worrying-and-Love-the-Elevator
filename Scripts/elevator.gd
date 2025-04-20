@@ -8,14 +8,14 @@ const Conversations := preload("res://Scripts/conversations.gd")
 @export var enable_conversations := true
 
 var people_in_elevator := []
-
-var game_lost = false
+var game_lost := false
 
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
+@onready var on_fire_stuff: Node3D = $OnFireStuff
 
 
 func _ready() -> void:
-	$OnFireStuff.hide()
+	on_fire_stuff.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	smooth_camera_controller.position = position
 	if enable_conversations:
@@ -43,8 +43,7 @@ func _physics_process(_delta: float) -> void:
 		if people_in_elevator.size() >= 3:
 			velocity.y -= people_in_elevator.size() ** 1.5 - 3
 
-
-	move_and_slide()
+		move_and_slide()
 
 	if Input.is_action_just_pressed("drop") and people_in_elevator.size() >= 1:
 		people_in_elevator[0].drop_off(1 if global_position.x < 0 else -1)
@@ -88,6 +87,7 @@ func handle_conversations() -> void:
 			people_in_elevator[-2].play_conversation(conversation, 1)
 			people_in_elevator[-1].play_conversation(conversation, 2)
 
+
 func set_lost_state() -> void:
 	game_lost = true
-	$OnFireStuff.show()
+	on_fire_stuff.show()

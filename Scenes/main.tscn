@@ -75,7 +75,7 @@ autostart = true
 
 [node name="CrowdNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6bp64")
-volume_db = -59.658
+volume_db = -10.0
 autoplay = true
 bus = &"Other"
 
