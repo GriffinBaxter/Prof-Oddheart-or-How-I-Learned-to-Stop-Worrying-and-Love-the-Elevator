@@ -60,10 +60,20 @@ func enter_elevator() -> void:
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
 
+		await get_tree().create_timer(0.5).timeout
+		tween.stop()
+
 
 func drop_off(new_direction: int, corridor_colour := Color.TRANSPARENT) -> void:
 	if corridor_colour == colour or corridor_colour == Color.TRANSPARENT:
 		direction = new_direction
+		var tween := create_tween()
+		(
+			tween
+			. tween_property(self, "rotation_degrees:y", 90 if direction >= 0 else -90, 0.5)
+			. set_trans(Tween.TRANS_SINE)
+			. set_ease(Tween.EASE_OUT)
+		)
 		rotation_degrees.y = 90 if direction >= lerp(0, 90, 0.75) else lerp(0, -90, 0.75)
 		in_elevator = false
 		if corridor_colour == Color.TRANSPARENT:
@@ -73,6 +83,8 @@ func drop_off(new_direction: int, corridor_colour := Color.TRANSPARENT) -> void:
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
+		await get_tree().create_timer(0.5).timeout
+		tween.stop()
 
 
 func die() -> void:
@@ -84,10 +96,17 @@ func die() -> void:
 func handle_collision_outer_walls(ray: RayCast3D) -> void:
 	if ray.is_colliding():
 		var col := ray.get_collider()
-		if col != null:
-			if col.is_in_group("outer_walls"):
-				direction = -direction
-				rotation_degrees.y = 90 if direction >= 0 else -90
+		if col != null and col.is_in_group("outer_walls"):
+			direction = -direction
+			var tween := create_tween()
+			(
+				tween
+				. tween_property(self, "rotation_degrees:y", 90 if direction >= 0 else -90, 0.5)
+				. set_trans(Tween.TRANS_SINE)
+				. set_ease(Tween.EASE_OUT)
+			)
+			await get_tree().create_timer(0.5).timeout
+			tween.stop()
 
 
 func play_conversation(conversation: Array, person_index: int) -> void:
