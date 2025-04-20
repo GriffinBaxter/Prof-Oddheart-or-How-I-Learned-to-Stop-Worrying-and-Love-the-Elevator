@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctfp4fsubafgk"]
+[gd_scene load_steps=7 format=3 uid="uid://ctfp4fsubafgk"]
 
+[ext_resource type="Script" uid="uid://dtcghh8rw6dlo" path="res://Scripts/building.gd" id="1_amr18"]
 [ext_resource type="PackedScene" uid="uid://vcg4h0dits03" path="res://Scenes/3_corridor_row.tscn" id="1_avus0"]
 [ext_resource type="Material" uid="uid://d06w6it2jkxm8" path="res://Materials/orange.tres" id="2_uj2qm"]
 
@@ -16,6 +17,7 @@ sky = SubResource("Sky_uj2qm")
 tonemap_mode = 2
 
 [node name="Building" type="Node3D"]
+script = ExtResource("1_amr18")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_amr18")

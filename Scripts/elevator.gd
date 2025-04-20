@@ -70,9 +70,14 @@ func _physics_process(_delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
+	var building := get_tree().root.get_child(2).find_child("Building")
+	if building:
+		if position.z < -7:
+			building.hide_front_corridors()
+		else:
+			building.show_front_corridors()
 	if game_won:
 		smooth_camera_controller.position = lerp(smooth_camera_controller.position, position, 0.75)
-		rocket_stuff.show()
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -106,7 +111,7 @@ func lost_game() -> void:
 
 func won_game() -> void:
 	game_won = true
-	#rocket_trail.show()  # TODO: add rocket trail
+	rocket_stuff.show()
 	set_collision_mask_value(1, false)
 	var elevator_tween := create_tween()
 	(
