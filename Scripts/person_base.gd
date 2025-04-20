@@ -6,7 +6,6 @@ const Conversations := preload("res://Scripts/conversations.gd")
 
 var in_elevator := false
 var has_ever_entered_elevator := false
-var has_conversed := false
 var direction: int = [-1, 1].pick_random()
 var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
 var elevator: CharacterBody3D
@@ -51,7 +50,12 @@ func enter_elevator() -> void:
 
 		var target_y = elevator.rotation.y
 		var tween := create_tween()
-		tween.tween_property(self, "rotation:y", target_y, 0.5).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		(
+			tween
+			. tween_property(self, "rotation:y", target_y, 0.5)
+			. set_trans(Tween.TRANS_SINE)
+			. set_ease(Tween.EASE_OUT)
+		)
 
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
@@ -60,7 +64,7 @@ func enter_elevator() -> void:
 func drop_off(corridor_colour: Color, new_direction: int) -> void:
 	if corridor_colour == colour:
 		direction = new_direction
-		rotation_degrees.y = 90 if direction >= lerp(0, 90, 1) else lerp(0,-90, 1)
+		rotation_degrees.y = 90 if direction >= lerp(0, 90, 1) else lerp(0, -90, 1)
 		in_elevator = false
 		get_tree().root.get_child(2).score += 100
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
@@ -86,4 +90,3 @@ func handle_collision_outer_walls(ray: RayCast3D) -> void:
 func play_conversation(conversation: Array, person_index: int) -> void:
 	conversation_player.stream = conversation[person_index]
 	conversation_player.play()
-	has_conversed = true
