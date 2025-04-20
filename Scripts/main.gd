@@ -25,8 +25,12 @@ var elevator: CharacterBody3D
 @onready var thumbs_up: Sprite3D = $GameWonMoon/ThumbsUp
 
 
+func _input(event: InputEvent):
+	if (Input.mouse_mode != Input.MOUSE_MODE_CAPTURED) and event is InputEventMouseButton:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elevator = get_tree().get_first_node_in_group("elevator")
 	spawners = get_tree().get_nodes_in_group("spawners")
 	q_button_popup.hide()

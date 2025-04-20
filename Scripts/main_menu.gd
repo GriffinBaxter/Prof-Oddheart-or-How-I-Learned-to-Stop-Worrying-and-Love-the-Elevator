@@ -17,14 +17,19 @@ func change_scene_to_main() -> void:
 	get_tree().change_scene_to_packed(MAIN)
 
 
+func _input(event: InputEvent):
+	if (Input.mouse_mode != Input.MOUSE_MODE_CAPTURED) and event is InputEventMouseButton:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	elevator = get_tree().get_first_node_in_group("elevator")
 	blink_tooltips()
 
 
 func blink_tooltips() -> void:
 	while !elevator.wasd_used:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		wasd.hide()
 		await get_tree().create_timer(0.5).timeout
 		wasd.show()
