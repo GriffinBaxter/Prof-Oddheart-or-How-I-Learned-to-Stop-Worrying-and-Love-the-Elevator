@@ -24,7 +24,7 @@ buses/default_bus_layout="uid://bt1x6a1o2biw6"
 
 [autoload]
 
-MusicPlayer="*res://Scenes/elevator_music.tscn"
+ElevatorMusic="*res://Scenes/elevator_music.tscn"
 AudioBalancing="*res://Scripts/audio_balancing.gd"
 
 [debug]
