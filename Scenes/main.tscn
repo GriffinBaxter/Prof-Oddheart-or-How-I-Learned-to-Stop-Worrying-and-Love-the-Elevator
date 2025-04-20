@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://jiexpvkmj5yq"]
+[gd_scene load_steps=13 format=3 uid="uid://jiexpvkmj5yq"]
 
 [ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://Scripts/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/elevator.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="3_21xkr"]
 [ext_resource type="AudioStream" uid="uid://cakctl4m1gn4a" path="res://Sounds/People/crowd_noise.mp3" id="4_6bp64"]
 [ext_resource type="Texture2D" uid="uid://jduene2fajr8" path="res://Images/arrow.png" id="4_kry3j"]
+[ext_resource type="Texture2D" uid="uid://dmby124bmub76" path="res://Images/wasd_filled_in.png" id="5_344ge"]
 [ext_resource type="AudioStream" uid="uid://cj7av3cdsr20y" path="res://Sounds/Elevator/sad-violin-piano.mp3" id="6_21xkr"]
+[ext_resource type="Texture2D" uid="uid://dphi7q2qnso1t" path="res://Images/button_filled_in.png" id="6_ynf5e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -63,6 +65,34 @@ offset_right = 427.5
 offset_bottom = 545.0
 rotation = 3.14159
 texture = ExtResource("4_kry3j")
+
+[node name="QButtonPopup" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 475.835
+offset_top = 77.64
+offset_right = 515.835
+offset_bottom = 117.64
+
+[node name="Wasd" type="TextureRect" parent="UI/QButtonPopup"]
+modulate = Color(0.411765, 0.411765, 0.411765, 0.784314)
+layout_mode = 0
+offset_left = -174.5
+offset_top = -19.0
+offset_right = 500.5
+offset_bottom = 429.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_344ge")
+
+[node name="Q" type="TextureRect" parent="UI/QButtonPopup"]
+modulate = Color(1, 0.976471, 0.184314, 1)
+layout_mode = 0
+offset_left = -204.5
+offset_top = -19.0
+offset_right = 23.5
+offset_bottom = 205.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_ynf5e")
 
 [node name="KillZone" type="Area3D" parent="."]
 
