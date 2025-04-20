@@ -132,7 +132,7 @@ rings = 24
 material = SubResource("StandardMaterial3D_344ge")
 
 [node name="ThumbsUp" type="Sprite3D" parent="GameWonMoon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.585, 3.568, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.568, 0)
 pixel_size = 0.05
 texture = ExtResource("9_ynf5e")
 

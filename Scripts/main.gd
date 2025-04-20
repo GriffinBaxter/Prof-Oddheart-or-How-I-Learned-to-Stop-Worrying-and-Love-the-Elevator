@@ -22,6 +22,7 @@ var elevator: CharacterBody3D
 @onready var game_won: AudioStreamPlayer = $GameWon
 @onready var q_button_popup: Control = $UI/QButtonPopup
 @onready var q: TextureRect = $UI/QButtonPopup/Q
+@onready var thumbs_up: Sprite3D = $GameWonMoon/ThumbsUp
 
 
 func _ready() -> void:
@@ -64,6 +65,16 @@ func _process(_delta: float) -> void:
 			crowd_noise.stop()
 			game_won.play()
 			elevator.won_game()
+			await get_tree().create_timer(3).timeout
+			var tween := create_tween()
+			(
+				tween
+				. tween_property(thumbs_up, "position:x", -31.585, 4)
+				. set_trans(Tween.TRANS_SINE)
+				. set_ease(Tween.EASE_OUT)
+			)
+			await get_tree().create_timer(4).timeout
+			tween.stop()
 		elif score <= min_score:
 			game_end = true
 			ElevatorMusic.stop()
