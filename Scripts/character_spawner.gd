@@ -11,4 +11,5 @@ func _ready() -> void:
 
 func spawn() -> void:
 	var character := character_scene.instantiate()
-	add_child(character)
+	character.position = global_position
+	get_tree().root.add_child(character)
