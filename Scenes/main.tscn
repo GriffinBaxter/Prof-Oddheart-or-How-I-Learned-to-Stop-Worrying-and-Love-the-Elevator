@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://jiexpvkmj5yq"]
+[gd_scene load_steps=15 format=3 uid="uid://jiexpvkmj5yq"]
 
 [ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://Scripts/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/elevator.tscn" id="2_kry3j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dmby124bmub76" path="res://Images/wasd_filled_in.png" id="5_344ge"]
 [ext_resource type="AudioStream" uid="uid://cj7av3cdsr20y" path="res://Sounds/Elevator/sad-violin-piano.mp3" id="6_21xkr"]
 [ext_resource type="Texture2D" uid="uid://dphi7q2qnso1t" path="res://Images/button_filled_in.png" id="6_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://dcxc1dav0oc7x" path="res://Images/thumbs_up.png" id="9_ynf5e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -24,6 +25,11 @@ glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dsnr4"]
 size = Vector3(41.0915, 0.260193, 32.2747)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_344ge"]
+albedo_color = Color(0.964706, 0.945098, 0.835294, 1)
+emission_enabled = true
+emission = Color(0.964706, 0.945098, 0.835294, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_jjvhh")
@@ -113,9 +119,16 @@ bus = &"Other"
 stream = ExtResource("6_21xkr")
 
 [node name="GameWonMoon" type="CSGSphere3D" parent="."]
-transform = Transform3D(3.325, 0, 0, 0, 3.325, 0, 0, 0, 3.325, 5.055, 400.775, -4.735)
+transform = Transform3D(3.01347, 0, -1.40521, 0, 3.325, 0, 1.40521, 0, 3.01347, 154.14, 369.82, -389.39)
+radius = 20.0
 radial_segments = 48
 rings = 24
+material = SubResource("StandardMaterial3D_344ge")
+
+[node name="ThumbsUp" type="Sprite3D" parent="GameWonMoon"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.585, 3.568, 0)
+pixel_size = 0.05
+texture = ExtResource("9_ynf5e")
 
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

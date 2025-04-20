@@ -13,6 +13,7 @@ var game_won := false
 
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
 @onready var on_fire_stuff: Node3D = $OnFireStuff
+@onready var camera_3d: Camera3D = $SmoothCameraController/Camera3D
 
 
 func _ready() -> void:
@@ -104,12 +105,20 @@ func won_game() -> void:
 	game_won = true
 	#rocket_trail.show()  # TODO: add rocket trail
 	set_collision_mask_value(1, false)
-	var tween := create_tween()
+	var elevator_tween := create_tween()
 	(
-		tween
+		elevator_tween
 		. tween_property(self, "global_position", Vector3(0, 400, 0), 4)
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_IN_OUT)
 	)
+	var camera_tween := create_tween()
+	(
+		camera_tween
+		. tween_property(camera_3d, "position", Vector3(0, 12, 30), 4)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
+	)
 	await get_tree().create_timer(4).timeout
-	tween.stop()
+	elevator_tween.stop()
+	camera_tween.stop()
