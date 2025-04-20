@@ -137,21 +137,24 @@ current = true
 
 [node name="FireEffect" type="GPUParticles3D" parent="OnFireStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.827073, 0)
-amount = 15
+amount = 3
+lifetime = 1.5
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_jd6vs")
 draw_pass_1 = SubResource("QuadMesh_1gjip")
 
 [node name="FireEffect2" type="GPUParticles3D" parent="OnFireStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.89882, -0.827073, 0)
-amount = 15
+amount = 3
+lifetime = 1.5
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_jd6vs")
 draw_pass_1 = SubResource("QuadMesh_1gjip")
 
 [node name="FireEffect3" type="GPUParticles3D" parent="OnFireStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.974889, -0.827073, 0)
-amount = 15
+amount = 3
+lifetime = 1.5
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_jd6vs")
 draw_pass_1 = SubResource("QuadMesh_1gjip")
@@ -160,8 +163,6 @@ draw_pass_1 = SubResource("QuadMesh_1gjip")
 
 [node name="RocketTrailEffect" type="GPUParticles3D" parent="RocketSuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135621, -1.66406, 0.0327559)
-visible = false
-amount = 15
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_7i85y")
 draw_pass_1 = SubResource("QuadMesh_1gjip")

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dcxc1dav0oc7x" path="res://Images/thumbs_up.png" id="9_ynf5e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
-sky_top_color = Color(0.275683, 0.481881, 0.552636, 1)
+sky_top_color = Color(0.180392, 0.333333, 0.384314, 1)
 sky_horizon_color = Color(1, 1, 1, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(1, 1, 1, 1)

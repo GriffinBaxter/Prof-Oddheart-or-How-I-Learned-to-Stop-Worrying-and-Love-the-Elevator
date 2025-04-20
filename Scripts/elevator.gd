@@ -130,5 +130,6 @@ func won_game() -> void:
 		. set_ease(Tween.EASE_IN_OUT)
 	)
 	await get_tree().create_timer(4).timeout
+	rocket_stuff.hide()
 	elevator_tween.stop()
 	camera_tween.stop()
