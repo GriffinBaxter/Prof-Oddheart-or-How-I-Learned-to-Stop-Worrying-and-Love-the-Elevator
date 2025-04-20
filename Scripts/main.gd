@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 			)
 			arrow_down.modulate = NEUTRAL_ARROW_COLOUR
 		elif score <= min_score:
-			arrow_up.modulate = RED_ARROW_COLOUR
+			arrow_down.modulate = RED_ARROW_COLOUR
 		elif score < 0:
 			arrow_up.modulate = NEUTRAL_ARROW_COLOUR
 			arrow_down.modulate = (
