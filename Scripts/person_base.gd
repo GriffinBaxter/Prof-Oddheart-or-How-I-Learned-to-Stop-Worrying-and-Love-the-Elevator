@@ -11,6 +11,7 @@ const FACE_4 = preload("res://Images/face_4.png")
 var in_elevator := false
 var has_ever_entered_elevator := false
 var direction: int = [-1, 1].pick_random()
+var offset_in_elevator := randf_range(-0.5, 0.5)
 var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
 var face_texture: Resource = [FACE_1, FACE_2, FACE_3, FACE_4].pick_random()
 var elevator: CharacterBody3D
@@ -43,6 +44,8 @@ func _physics_process(delta: float) -> void:
 		set_collision_layer_value(2, true)
 		if elevator:
 			global_position = elevator.global_position + elevator.velocity * delta
+			global_position.x += offset_in_elevator
+			global_position.z += offset_in_elevator
 	else:
 		set_collision_layer_value(1, true)
 		set_collision_layer_value(2, false)

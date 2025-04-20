@@ -7,7 +7,7 @@ const RED_ARROW_COLOUR := Color("ff413b")
 const SKY_MATERIAL = preload("res://Materials/sky_material.tres")
 
 @export var max_score := 200.
-@export var min_score := -200.
+@export var min_score := -300.
 @export var max_spawn_time: float
 @export var min_spawn_time: float
 
