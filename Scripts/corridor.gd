@@ -14,9 +14,9 @@ func _ready() -> void:
 
 func _on_drop_off_area_left_body_entered(body: Node3D) -> void:
 	if body.is_in_group("people") and body.in_elevator:
-		body.drop_off(colour, 1)
+		body.drop_off(1, colour)
 
 
 func _on_drop_off_area_right_body_entered(body: Node3D) -> void:
 	if body.is_in_group("people") and body.in_elevator:
-		body.drop_off(colour, -1)
+		body.drop_off(-1, colour)

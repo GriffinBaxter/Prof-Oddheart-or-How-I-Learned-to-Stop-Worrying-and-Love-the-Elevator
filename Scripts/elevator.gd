@@ -41,6 +41,9 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 
+	if Input.is_action_just_pressed("drop") and people_in_elevator.size() >= 1:
+		people_in_elevator[0].drop_off(1 if global_position.x < 0 else -1)
+
 	for slide_collision_count in get_slide_collision_count():
 		var slide_collision := get_slide_collision(slide_collision_count)
 		var collider := slide_collision.get_collider()

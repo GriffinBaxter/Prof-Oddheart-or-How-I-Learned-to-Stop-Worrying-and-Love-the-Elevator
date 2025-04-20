@@ -48,7 +48,7 @@ func enter_elevator() -> void:
 		has_ever_entered_elevator = true
 		elevator.people_in_elevator.append(self)
 
-		var target_y = elevator.rotation.y
+		var target_y := elevator.rotation.y
 		var tween := create_tween()
 		(
 			tween
@@ -61,12 +61,15 @@ func enter_elevator() -> void:
 			elevator_ding.play()
 
 
-func drop_off(corridor_colour: Color, new_direction: int) -> void:
-	if corridor_colour == colour:
+func drop_off(new_direction: int, corridor_colour := Color.TRANSPARENT) -> void:
+	if corridor_colour == colour or corridor_colour == Color.TRANSPARENT:
 		direction = new_direction
-		rotation_degrees.y = 90 if direction >= lerp(0, 90, 0.75) else lerp(0,-90, 0.75)
+		rotation_degrees.y = 90 if direction >= lerp(0, 90, 0.75) else lerp(0, -90, 0.75)
 		in_elevator = false
-		get_tree().root.get_child(2).score += 100
+		if corridor_colour == Color.TRANSPARENT:
+			get_tree().root.get_child(2).score -= 5
+		else:
+			get_tree().root.get_child(2).score += 100
 		elevator.people_in_elevator.remove_at(elevator.people_in_elevator.find(self))
 		if !elevator_ding.playing or elevator_ding.get_playback_position() >= 2:
 			elevator_ding.play()
