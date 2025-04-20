@@ -25,7 +25,7 @@ var elevator: CharacterBody3D
 @onready var thumbs_up: Sprite3D = $GameWonMoon/ThumbsUp
 
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if (Input.mouse_mode != Input.MOUSE_MODE_CAPTURED) and event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

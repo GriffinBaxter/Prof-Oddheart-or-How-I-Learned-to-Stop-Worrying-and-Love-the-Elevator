@@ -50,7 +50,6 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 10)
 
 [node name="Building" parent="." instance=ExtResource("3_21xkr")]
-script = null
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

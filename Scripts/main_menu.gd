@@ -17,7 +17,7 @@ func change_scene_to_main() -> void:
 	get_tree().change_scene_to_packed(MAIN)
 
 
-func _input(event: InputEvent):
+func _input(event: InputEvent) -> void:
 	if (Input.mouse_mode != Input.MOUSE_MODE_CAPTURED) and event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
