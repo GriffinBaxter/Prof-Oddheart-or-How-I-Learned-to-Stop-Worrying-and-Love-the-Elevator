@@ -75,12 +75,16 @@ func _process(_delta: float) -> void:
 			)
 			await get_tree().create_timer(4).timeout
 			tween.stop()
+			await get_tree().create_timer(6).timeout
+			get_tree().reload_current_scene()
 		elif score <= min_score:
 			game_end = true
 			ElevatorMusic.stop()
 			crowd_noise.stop()
 			game_lost.play()
 			elevator.lost_game()
+			await get_tree().create_timer(10).timeout
+			get_tree().reload_current_scene()
 
 
 func spawn_character_randomly() -> void:
