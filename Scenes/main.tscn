@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://jiexpvkmj5yq"]
+[gd_scene load_steps=11 format=3 uid="uid://jiexpvkmj5yq"]
 
 [ext_resource type="Script" uid="uid://p1cxo5j1663b" path="res://Scripts/main.gd" id="1_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://qjq33xvfin8d" path="res://Scenes/elevator.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://ctfp4fsubafgk" path="res://Scenes/building.tscn" id="3_21xkr"]
 [ext_resource type="AudioStream" uid="uid://cakctl4m1gn4a" path="res://Sounds/People/crowd_noise.mp3" id="4_6bp64"]
 [ext_resource type="Texture2D" uid="uid://jduene2fajr8" path="res://Images/arrow.png" id="4_kry3j"]
+[ext_resource type="AudioStream" uid="uid://cj7av3cdsr20y" path="res://Sounds/Elevator/sad-violin-piano.mp3" id="6_21xkr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dxppu"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -74,9 +75,12 @@ autostart = true
 
 [node name="CrowdNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_6bp64")
-volume_db = -10.0
+volume_db = -59.658
 autoplay = true
 bus = &"Other"
+
+[node name="GameLost" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_21xkr")
 
 [connection signal="body_entered" from="KillZone" to="." method="_on_kill_zone_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

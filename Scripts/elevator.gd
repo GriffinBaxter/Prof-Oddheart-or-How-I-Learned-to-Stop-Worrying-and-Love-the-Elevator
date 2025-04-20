@@ -9,10 +9,13 @@ const Conversations := preload("res://Scripts/conversations.gd")
 
 var people_in_elevator := []
 
+var game_lost = false
+
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
 
 
 func _ready() -> void:
+	$OnFireStuff.hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	smooth_camera_controller.position = position
 	if enable_conversations:
@@ -25,19 +28,21 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var input := Input.get_vector("left", "right", "down", "up")
-	var direction := transform.basis * Vector3(input.x, input.y, 0).normalized()
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.y = direction.y * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.y = move_toward(velocity.y, 0, speed)
+	if !game_lost:
+		var input := Input.get_vector("left", "right", "down", "up")
+		var direction := transform.basis * Vector3(input.x, input.y, 0).normalized()
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.y = direction.y * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.y = move_toward(velocity.y, 0, speed)
 
-	velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
+		velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
 
-	if people_in_elevator.size() >= 3:
-		velocity.y -= people_in_elevator.size() ** 1.5 - 3
+		if people_in_elevator.size() >= 3:
+			velocity.y -= people_in_elevator.size() ** 1.5 - 3
+
 
 	move_and_slide()
 
@@ -79,3 +84,7 @@ func handle_conversations() -> void:
 			people_in_elevator[-3].play_conversation(conversation, 0)
 			people_in_elevator[-2].play_conversation(conversation, 1)
 			people_in_elevator[-1].play_conversation(conversation, 2)
+
+func set_lost_state() -> void:
+	game_lost = true
+	$OnFireStuff.show()

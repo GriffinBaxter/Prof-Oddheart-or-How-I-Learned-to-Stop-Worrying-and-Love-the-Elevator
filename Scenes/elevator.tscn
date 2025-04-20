@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://qjq33xvfin8d"]
+[gd_scene load_steps=12 format=3 uid="uid://qjq33xvfin8d"]
 
 [ext_resource type="Script" uid="uid://moqxk8y60xhx" path="res://Scripts/elevator.gd" id="1_25c2b"]
 [ext_resource type="Material" uid="uid://cwo6egjcelvi0" path="res://Materials/black.tres" id="2_kiv01"]
@@ -14,6 +14,38 @@ size = Vector3(0.2, 2.25, 0.0916382)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y28hi"]
 size = Vector3(0.1, 2.25, 1.825)
+
+[sub_resource type="Curve" id="Curve_7i85y"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.492647, 28.3146), 0.0, 0.0, 0, 0, Vector2(0.882353, 311.461), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_06awd"]
+curve = SubResource("Curve_7i85y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jd6vs"]
+angle_min = 1.07288e-05
+angle_max = 314.5
+angle_curve = SubResource("CurveTexture_06awd")
+gravity = Vector3(0, 5, 0)
+turbulence_enabled = true
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rajhg"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.470588, 0.168627, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1gjip"]
+material = SubResource("StandardMaterial3D_rajhg")
 
 [node name="Elevator" type="CharacterBody3D" groups=["elevator"]]
 motion_mode = 1
@@ -96,5 +128,14 @@ spot_angle = 40.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
+
+[node name="OnFireStuff" type="Node3D" parent="."]
+
+[node name="FireEffect" type="GPUParticles3D" parent="OnFireStuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.827073, 0)
+amount = 15
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jd6vs")
+draw_pass_1 = SubResource("QuadMesh_1gjip")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

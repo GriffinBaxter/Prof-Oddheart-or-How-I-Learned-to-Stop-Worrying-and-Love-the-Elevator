@@ -39,6 +39,13 @@ func _process(_delta: float) -> void:
 			+ NEUTRAL_ARROW_COLOUR * ((-MIN_SCORE + score) / -MIN_SCORE)
 		)
 
+	if score <= -10:
+		var elevator = get_tree().get_first_node_in_group("elevator")
+		MusicPlayer.stop()
+		$CrowdNoise.stop()
+		$GameLost.play()
+		elevator.set_lost_state()
+
 
 func spawn_character_randomly() -> void:
 	if spawners.is_empty():
