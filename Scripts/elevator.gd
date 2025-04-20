@@ -6,7 +6,10 @@ const Conversations := preload("res://Scripts/conversations.gd")
 @export var elevator_strength := 2.
 @export var smooth_camera_percent := 0.1
 @export var enable_conversations := true
+@export var mouse_movement_enabled := true
 
+var wasd_used := false
+var mouse_used := false
 var people_in_elevator := []
 var game_lost := false
 var game_won := false
@@ -36,13 +39,17 @@ func _physics_process(_delta: float) -> void:
 		var input := Input.get_vector("left", "right", "down", "up")
 		var direction := transform.basis * Vector3(input.x, input.y, 0).normalized()
 		if direction:
+			wasd_used = true
 			velocity.x = direction.x * speed
 			velocity.y = direction.y * speed
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			velocity.y = move_toward(velocity.y, 0, speed)
 
-		velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
+		if mouse_movement_enabled:
+			if wasd_used and Input.get_last_mouse_velocity().y != 0:
+				mouse_used = true
+			velocity.z = speed * Input.get_last_mouse_velocity().y * 0.001
 
 		if people_in_elevator.size() >= 3:
 			velocity.y -= people_in_elevator.size() ** 1.5 - 3
