@@ -13,11 +13,14 @@ var mouse_used := false
 var people_in_elevator := []
 var game_lost := false
 var game_won := false
+var all_movement_disabled := false
 
 @onready var smooth_camera_controller: Node3D = $SmoothCameraController
 @onready var on_fire_stuff: Node3D = $OnFireStuff
 @onready var camera_3d: Camera3D = $SmoothCameraController/Camera3D
 @onready var rocket_stuff: Node3D = $RocketSuff
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var elevator_ding: AudioStreamPlayer = $ElevatorDing
 
 
 func _ready() -> void:
@@ -31,7 +34,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if !game_lost and !game_won:
+	if !game_lost and !game_won and !all_movement_disabled:
 		var input := Input.get_vector("left", "right", "down", "up")
 		var direction := transform.basis * Vector3(input.x, input.y, 0).normalized()
 		if direction:
@@ -133,4 +136,39 @@ func won_game() -> void:
 	await get_tree().create_timer(4).timeout
 	rocket_stuff.hide()
 	elevator_tween.stop()
+	camera_tween.stop()
+
+
+func play_elevator_door_animation() -> void:
+	all_movement_disabled = true
+	camera_3d.position = Vector3(-16, 1.55, 0)
+	camera_3d.rotation_degrees = Vector3(-6, -90, 0)
+	camera_3d.fov = 20
+	animation_player.play("doors_open")
+	await get_tree().create_timer(1).timeout
+	elevator_ding.play()
+	await get_tree().create_timer(1).timeout
+	var camera_tween := create_tween()
+	(
+		camera_tween
+		. tween_property(camera_3d, "position", Vector3(0, 1.55, 8), 2)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
+	)
+	(
+		camera_tween
+		. parallel()
+		. tween_property(camera_3d, "rotation_degrees", Vector3(-12, 0, 0), 2)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
+	)
+	(
+		camera_tween
+		. parallel()
+		. tween_property(camera_3d, "fov", 40, 2)
+		. set_trans(Tween.TRANS_SINE)
+		. set_ease(Tween.EASE_IN_OUT)
+	)
+	await get_tree().create_timer(2).timeout
+	all_movement_disabled = false
 	camera_tween.stop()

@@ -78,6 +78,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Wasd" type="TextureRect" parent="UI"]
+visible = false
 modulate = Color(0.411765, 0.411765, 0.411765, 0.784314)
 layout_mode = 0
 offset_left = 61.0

@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://qjq33xvfin8d"]
+[gd_scene load_steps=18 format=3 uid="uid://qjq33xvfin8d"]
 
 [ext_resource type="Script" uid="uid://moqxk8y60xhx" path="res://Scripts/elevator.gd" id="1_25c2b"]
 [ext_resource type="Material" uid="uid://cwo6egjcelvi0" path="res://Materials/black.tres" id="2_kiv01"]
+[ext_resource type="Material" uid="uid://cuehyish88qp5" path="res://Materials/gray_metal.tres" id="3_jd6vs"]
+[ext_resource type="AudioStream" uid="uid://de5vobvbimdhf" path="res://Sounds/Elevator/elevator_ding.mp3" id="4_1gjip"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25c2b"]
 size = Vector3(2.6, 0.2, 2.2)
@@ -50,6 +52,115 @@ material = SubResource("StandardMaterial3D_rajhg")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7i85y"]
 angle_min = 1.07288e-05
 angle_max = 455.2
+
+[sub_resource type="Animation" id="Animation_jd6vs"]
+resource_name = "doors_open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/Left1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.2, -0.1, -0.275), Vector3(-1.2, -0.1, -0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/Left2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.2, -0.1, 0.275), Vector3(-1.2, -0.1, 0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Doors/Right1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.2, -0.1, -0.275), Vector3(1.2, -0.1, -0.8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Doors/Right2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.2, -0.1, 0.275), Vector3(1.2, -0.1, 0.8)]
+}
+
+[sub_resource type="Animation" id="Animation_1gjip"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Doors/Left1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.2, -0.1, -0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Doors/Left2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.2, -0.1, 0.8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Doors/Right1:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.2, -0.1, -0.8)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Doors/Right2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.2, -0.1, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sdfrh"]
+_data = {
+&"RESET": SubResource("Animation_1gjip"),
+&"doors_open": SubResource("Animation_jd6vs")
+}
 
 [node name="Elevator" type="CharacterBody3D" groups=["elevator"]]
 motion_mode = 1
@@ -134,6 +245,7 @@ spot_angle = 40.0
 current = true
 
 [node name="OnFireStuff" type="Node3D" parent="."]
+visible = false
 
 [node name="FireEffect" type="GPUParticles3D" parent="OnFireStuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.827073, 0)
@@ -160,11 +272,44 @@ process_material = SubResource("ParticleProcessMaterial_jd6vs")
 draw_pass_1 = SubResource("QuadMesh_1gjip")
 
 [node name="RocketSuff" type="Node3D" parent="."]
+visible = false
 
 [node name="RocketTrailEffect" type="GPUParticles3D" parent="RocketSuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.135621, -1.66406, 0.0327559)
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_7i85y")
 draw_pass_1 = SubResource("QuadMesh_1gjip")
+
+[node name="Doors" type="Node3D" parent="."]
+
+[node name="Left1" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.1, -0.8)
+size = Vector3(0.1, 2.1, 0.55)
+material = ExtResource("3_jd6vs")
+
+[node name="Left2" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -0.1, 0.8)
+size = Vector3(0.1, 2.1, 0.55)
+material = ExtResource("3_jd6vs")
+
+[node name="Right1" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.1, -0.8)
+size = Vector3(0.1, 2.1, 0.55)
+material = ExtResource("3_jd6vs")
+
+[node name="Right2" type="CSGBox3D" parent="Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -0.1, 0.8)
+size = Vector3(0.1, 2.1, 0.55)
+material = ExtResource("3_jd6vs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sdfrh")
+}
+
+[node name="ElevatorDing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1gjip")
+volume_db = -10.0
+bus = &"Other"
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

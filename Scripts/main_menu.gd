@@ -24,6 +24,8 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	elevator = get_tree().get_first_node_in_group("elevator")
+	elevator.play_elevator_door_animation()
+	await get_tree().create_timer(3.5).timeout
 	blink_tooltips()
 
 
