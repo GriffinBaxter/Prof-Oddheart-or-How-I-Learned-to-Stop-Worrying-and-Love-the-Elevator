@@ -4,13 +4,12 @@ const NEUTRAL_ARROW_COLOUR := Color.DIM_GRAY - Color(0, 0, 0, 0.5)
 const GREEN_ARROW_COLOUR := Color("86ff4b")
 const RED_ARROW_COLOUR := Color("ff413b")
 
-const SKY_MATERIAL = preload("res://Materials/sky_material.tres")
-
 @export var max_score := 200.
 @export var min_score := -300.
 @export var max_spawn_time: float
 @export var min_spawn_time: float
 
+var sky_material := preload("res://Materials/sky_material.tres")
 var spawners: Array = [0]
 var score: int = 0
 var game_end := false
@@ -38,6 +37,9 @@ func _ready() -> void:
 	spawners = get_tree().get_nodes_in_group("spawners")
 	q_button_popup.hide()
 	handle_blinking_q_button()
+	sky_material.sky_top_color = Color("2e5562")
+	sky_material.sky_horizon_color = Color.WHITE
+	sky_material.ground_horizon_color = Color.WHITE
 
 
 func _process(_delta: float) -> void:
@@ -106,28 +108,24 @@ func won_game() -> void:
 	crowd_noise.stop()
 	game_won.play()
 	elevator.won_game()
-	var modified_sky_material := SKY_MATERIAL
-	world_environment.environment.sky.set_material(modified_sky_material)
 	var sky_tween := create_tween()
 	(
 		sky_tween
-		. tween_property(modified_sky_material, "sky_top_color", Color(0.15, 0.15, 0.15, 1), 4)
+		. tween_property(sky_material, "sky_top_color", Color(0.15, 0.15, 0.15, 1), 4)
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_OUT)
 	)
 	(
 		sky_tween
 		. parallel()
-		. tween_property(modified_sky_material, "sky_horizon_color", Color(0.15, 0.15, 0.15, 1), 4)
+		. tween_property(sky_material, "sky_horizon_color", Color(0.15, 0.15, 0.15, 1), 4)
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_OUT)
 	)
 	(
 		sky_tween
 		. parallel()
-		. tween_property(
-			modified_sky_material, "ground_horizon_color", Color(0.15, 0.15, 0.15, 1), 4
-		)
+		. tween_property(sky_material, "ground_horizon_color", Color(0.15, 0.15, 0.15, 1), 4)
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_OUT)
 	)
