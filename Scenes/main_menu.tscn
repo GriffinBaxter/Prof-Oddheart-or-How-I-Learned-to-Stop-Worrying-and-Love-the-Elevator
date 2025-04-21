@@ -46,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.4158)
 [node name="Ground" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.84861, -6.91517, -7.7004)
 use_collision = true
-size = Vector3(50, 0.2, 50)
+size = Vector3(75, 0.2, 75)
 material = SubResource("StandardMaterial3D_jix8l")
 
 [node name="GoToPlay" type="Area3D" parent="."]

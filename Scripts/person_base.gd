@@ -12,7 +12,7 @@ var in_elevator := false
 var has_ever_entered_elevator := false
 var direction: int = [-1, 1].pick_random()
 var offset_in_elevator := randf_range(-0.5, 0.5)
-var colour: Color = [Color.RED, Color.GREEN, Color.BLUE].pick_random()
+var colour: Color
 var face_texture: Resource = [FACE_1, FACE_2, FACE_3, FACE_4].pick_random()
 var elevator: CharacterBody3D
 
